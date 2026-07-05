@@ -31,3 +31,32 @@ body {
 .card {
     border-radius: 0.75rem;
 }
+
+
+/* Log out button  */
+.logout-form {
+  margin: 0;
+}
+
+.logout-button {
+    padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        text-align: left
+}
+
+/* Mobile and screen - responsive  */
+@media (max-width: 991.98px) {
+    .navbar-nav .logout-form {
+        width: 100%
+    }
+}
+
+.navbar-nav .logout-button {
+    width: 100%;
+    text-align: left;
+    padding-left: 0;
+}
+
+.navbar-nav .nav-link {
+    padding-left: 0;
+}
