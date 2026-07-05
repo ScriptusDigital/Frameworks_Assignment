@@ -4,8 +4,10 @@ body {
 
 
 /* Footer  */
-footer {
+
+.site-footer {
     background-color: #ffffff;
+    text-align: center;
 }
 
 /* Navbar  */
