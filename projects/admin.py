@@ -7,7 +7,7 @@ from .models import Project, Category
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('name', 'owner', 'status', 'category', 'start_date', 'end_date')
     list_filter = ('status', 'category')
-    search_fields = ('name', 'description', 'owner__username')
+    search_fields = ('name', 'description', 'stakeholders')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
