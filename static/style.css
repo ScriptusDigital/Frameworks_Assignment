@@ -23,3 +23,9 @@ footer {
     letter-spacing: 0.02.em;
 
 }
+
+
+/* Login Card  */
+.card {
+    border-radius: 0.75rem;
+}
