@@ -39,7 +39,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'projects/project_form.html'
     form_class = ProjectForm
-    success_url = '/projects_list'
+    success_url = '/projects'
 
     def form_valid(self, form):
         form.instance.owner = self.request.user

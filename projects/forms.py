@@ -8,7 +8,7 @@ class ProjectForm(forms.ModelForm):
 
     category = forms.ModelChoiceField(
         queryset=Category.objects.all(),
-        required=False, 
+        required=True, 
         empty_label="Please select a category",
         widget=forms.Select(attrs={'class': 'form-select'})
     )
