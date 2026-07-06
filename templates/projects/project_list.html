@@ -27,19 +27,15 @@
         </tr>   
 </thead>
 <tbody>
-
+{% for project in projects %}
     <tr>
-        <td>Project 1Name Placeholder</td>
-          <td>Project Sttusus</td>
-            <td>Project start</td>
-              <td>Project stakeholders</td>
-                <td>Project 1</td>
-
-
+        <td>{{ project.name }}</td>
+    
 
 
 
     </tr>
+    {% endfor %}
 </tbody>
 </tabel>
 
