@@ -1,7 +1,19 @@
 from django import forms
-from .models import Project
+from .models import Project, Category
+
 
 class ProjectForm(forms.ModelForm):
+
+#Prefill on category field
+
+    category = forms.ModelChoiceField(
+        queryset=Category.objects.all(),
+        required=False, 
+        empty_label="Please select a category",
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+# Form inputs
+
     class Meta:
         model = Project
         fields = ['name', 'description', 'start_date', 'end_date', 'stakeholders', 'status', 'category']
@@ -12,10 +24,9 @@ class ProjectForm(forms.ModelForm):
             'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'stakeholders': forms.Textarea(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-select'}),
-            'category': forms.Select(attrs={'class': 'form-select'}),
         }
 
-#Make sure end date is not before start date
+#Making sure end date is not before start date
 
     def clean(self):
         cleaned_data = super().clean()
