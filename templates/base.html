@@ -50,10 +50,16 @@
 </nav>
 
 
-  
-            
+  <main class="container py-4">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
 
-            <main class="container mt-4">
+{% endfor %}
+{% endif %}
+    
                 {% block content %}
                 {% endblock %}
             </main>
