@@ -11,25 +11,30 @@
 
 <a href="{% url 'project_create' %}" class="btn btn-primary mb-3">Add Project</a>
 
-</div>
 
 <div class="card shadow-sm">
     <div class="card-body">
 
+        {% if projects %}
 
-<tabel class="table align-middle">
-<thead>
-    <tr>
-        <th scope="col">Project Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Owner</th>
-        <th scope="col">Actions</th>
-        </tr>   
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Owner</th>
+                <th>Actions</th>
+                </tr>   
 </thead>
+
 <tbody>
 {% for project in projects %}
     <tr>
         <td>{{ project.name }}</td>
+        <td>{{ project.get_status_display }}</td>
+        <td>{{ project.start_date }}</td>
+        <td>{{ project.stakeholders|truncatechars:50 }}</td>
+
     
 
 
@@ -37,14 +42,11 @@
     </tr>
     {% endfor %}
 </tbody>
-</tabel>
-
-    </div>
-
-
-</div>
-
-
-<h1>Projects Placeholder</h1>
+</table>
+{% else %}
+    <p class="mb-0 text-muted">No projects have been created yet.</p>
+{% endif %}
+             </div>
+        </div>
 
 {% endblock %}
