@@ -22,6 +22,6 @@ class Profile(models.Model):
     department = models.CharField(max_length=100, blank=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default="user")
 
-    def __str_(self):
+    def __str__(self):
         return f"{self.user.username} profile"
 
