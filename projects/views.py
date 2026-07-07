@@ -69,7 +69,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_confirm_delete.html'
-    success_url = '/projects_list'
+    success_url = '/projects/'
 
     def get_queryset(self):
         if self.request.user.has_perm('projects.can_view_all_projects'):

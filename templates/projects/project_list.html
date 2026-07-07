@@ -38,14 +38,11 @@
 
 
 <a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-outline-primary">View</a>
-<a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
-<a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
+<a href="{% url 'project_update' project.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+<a href="{% url 'project_delete' project.pk %}" class="btn btn-sm btn-outline-danger">Delete</a>
 
 </td>
     
-
-
-
     </tr>
     {% endfor %}
 </tbody>
