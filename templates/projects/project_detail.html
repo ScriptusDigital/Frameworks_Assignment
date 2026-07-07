@@ -12,8 +12,31 @@
         <div class="d-flex justify-content-between">
             <div>
                 <h1 class="h3"> {{ project.name }}</h1>
+                <p class="text-muted">{{ project.description }}</p>
             </div>
+
+
+            <span class="badge bg-secondary align-self-start">
+                {{ project.get_status_display }}
+            </span>
         </div>
+
+<hr>
+<dl class="row">
+    <dt class="col-sm-3">Start Date</dt>
+    <dd class="col-sm-9"> {{ project.start_date}} </dd>
+
+        <dt class="col-sm-3">End Date</dt>
+    <dd class="col-sm-9"> {{ project.end|default:"Not set" }} </dd>
+
+        <dt class="col-sm-3">Stakeholders</dt>
+    <dd class="col-sm-9"> {{ project.stakeholders }} </dd>
+
+        <dt class="col-sm-3">Category</dt>
+    <dd class="col-sm-9"> {{ project.category|default:"Uncategorised" }} </dd>
+
+</dl>
+
 
     </div>
 </div>
