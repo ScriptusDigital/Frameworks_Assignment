@@ -38,13 +38,16 @@
 </dl>
 
 
-    </div>
+<div class="d-flex gap-2">
+    
+        <a href="{% url 'project_update' project.pk %}" class="btn btn-outline-primary">Edit</a>
+<a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-danger">Delete</a>
+</div>
+
+</div>
 </div>
 
 
 
-
-
-<h1>Projects Placeholder</h1>
 
 {% endblock %}
