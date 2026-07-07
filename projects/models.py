@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Category(models.Model):
+    # Allows projects to be organised by category - these are stored as separate model rather than hard-coded so admins can manage viewable categories through the admin panel.
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):

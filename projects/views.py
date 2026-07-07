@@ -39,7 +39,7 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'projects/project_form.html'
     form_class = ProjectForm
-    success_url = '/projects'
+    success_url = '/projects/'
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
@@ -50,9 +50,9 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
-    template_name = 'projects/project_detail.html'
+    template_name = 'projects/project_form.html'
     form_class = ProjectForm
-    success_url = '/projects_list'
+    success_url = '/projects/'
 
     def get_queryset(self):
         if self.request.user.has_perm('projects.can_view_all_projects'):
