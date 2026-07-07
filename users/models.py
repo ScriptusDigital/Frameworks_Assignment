@@ -1,3 +1,13 @@
+from django.contrib.auth.models import User
+
 from django.db import models
 
-# Create your models here.
+# User model
+
+class Profile(models.Model):
+
+    user
+    phone 
+    department 
+    role 
+    
