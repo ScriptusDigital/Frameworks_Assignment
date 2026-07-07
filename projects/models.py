@@ -5,6 +5,9 @@ class Category(models.Model):
     # Allows projects to be organised by category - these are stored as separate model rather than hard-coded so admins can manage viewable categories through the admin panel.
     name = models.CharField(max_length=100, unique=True)
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
     def __str__(self):
         return self.name
 
