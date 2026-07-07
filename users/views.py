@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 
 from .forms import UserRegisterForm
+from .models import Profile
 
 @login_required
 def dashboard(request):
@@ -15,7 +16,9 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user)
+            
             messages.success(request, 'Your account has been created! You are now able to log in')
             return redirect('login')
     else:
