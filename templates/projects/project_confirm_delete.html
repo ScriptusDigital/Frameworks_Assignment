@@ -6,13 +6,18 @@
     <div class="col-lg-6">
         <div class="card shadow-sm border-danger">
             <div class="card-body">
-                <ht class="h4 mb-3">Delete Project</ht>
+                <h1 class="h4 mb-3">Delete Project</h1>
+
+<p>
+    Are you sure you want to delete
+    <strong>{{ object.name }}</strong>
+</p>
 
 <form method="post">
 {% csrf_token %}
         <a href="{% url 'project_detail' object.pk %}" class="btn btn-outline-secondary">Cancel</a>
   
-        <button="submit" class="bt bt-danger confirm-action">Delete</button>
+        <button type="submit" class="btn btn-danger confirm-action">Delete</button>
 
 
 </form>
