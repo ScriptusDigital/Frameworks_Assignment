@@ -34,7 +34,14 @@
         <td>{{ project.get_status_display }}</td>
         <td>{{ project.start_date }}</td>
         <td>{{ project.stakeholders|truncatechars:50 }}</td>
+<td class="text-end">
 
+
+<a href="{% url 'project_detail' project.pk %}" class="btn-sm btn-outline-primary">View</a>
+<a href="{% url 'project_detail' project.pk %}" class="btn-sm btn-outline-primary">View</a>
+<a href="{% url 'project_detail' project.pk %}" class="btn-sm btn-outline-primary">View</a>
+
+</td>
     
 
 
