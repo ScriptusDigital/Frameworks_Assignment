@@ -4,7 +4,30 @@
 
 
 
-<div class="row justify-content-center"?
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm">
+        <div class="card-body">
+            
+        <h1 class="h4 mb-3">Profile</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+
+<h2 class="h6">Account Details</h2>
+{{ user_form.as_p }}
+
+<hr>
+
+<h2 class="h6">Contact Details</h2>
+
+</form>
+
+        </div>
+
+    </div>
+</div>
 
 
 
