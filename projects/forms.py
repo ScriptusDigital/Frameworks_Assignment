@@ -19,10 +19,15 @@ class ProjectForm(forms.ModelForm):
         fields = ['name', 'description', 'start_date', 'end_date', 'stakeholders', 'status', 'category']
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control',
+            'rows':3                                                                     
+                    }),
+
             'start_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'stakeholders': forms.Textarea(attrs={'class': 'form-control'}),
+            'stakeholders': forms.Textarea(attrs={'class': 'form-control',
+            'rows':3                                        
+                                                  }),
             'status': forms.Select(attrs={'class': 'form-select'}),
         }
 
