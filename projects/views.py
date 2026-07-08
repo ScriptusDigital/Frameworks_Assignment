@@ -7,14 +7,25 @@ from .models import Project
 # Logic for handling project-related views and actions
 # List View
 
+# Control for user role to view all projects
+def user_can_view_all_projects(user):
 
+    if user.has_perm("projects.can_view_all_projects"):
+        return True
+    
+    if hasattr(user, "profile") and user.profile.role in ["manager", "admin"]:
+        return True
+    
+    return False
+
+#List view
 class ProjectListView(LoginRequiredMixin, ListView):
     model = Project
     template_name = 'projects/project_list.html'
     context_object_name = 'projects'
 
     def get_queryset(self):
-        if self.request.user.has_perm('projects.view_all_projects'):
+        if user_can_view_all_projects(self.request.user):
             return Project.objects.all()
         
         return Project.objects.filter(owner=self.request.user)
@@ -27,11 +38,10 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'project'
 
     def get_queryset(self):
-        if self.request.user.has_perm('projects.view_all_projects'):
+        if user_can_view_all_projects(self.request.user):
             return Project.objects.all()
         
         return Project.objects.filter(owner=self.request.user)
-
 
 # Create View
 
@@ -55,7 +65,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     success_url = '/projects/'
 
     def get_queryset(self):
-        if self.request.user.has_perm('projects.can_view_all_projects'):
+        if user_can_view_all_projects(self.request.user):
             return Project.objects.all()
         
         return Project.objects.filter(owner=self.request.user)
@@ -81,3 +91,5 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     def form_valid(self, form):
         messages.success(self.request, 'Project deleted successfully.')
         return super().form_valid(form)
+    
+
