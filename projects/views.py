@@ -29,7 +29,11 @@ class ProjectListView(LoginRequiredMixin, ListView):
             return Project.objects.all()
         
         return Project.objects.filter(owner=self.request.user)
-
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["can_view_all_projects"] = user_can_view_all_projects(self.request.user)
+        return context
 # Detail View
 
 class ProjectDetailView(LoginRequiredMixin, DetailView):
