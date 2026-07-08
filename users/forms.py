@@ -30,17 +30,34 @@ class UserRegisterForm(UserCreationForm):
 
 
 #User Updating info on profiles page
+#Widgets define how form fields rendered in HTML bootstrap
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField(required=True)  
+    email = forms.EmailField(  
+        required=True,
+        widget=forms.EmailInput(attrs={"class": "form-control"})
+)
 
     class Meta: 
         model = User
         fields = ["first_name", "last_name", "email"]
 
-#Addition profile info form
+
+        widgets = {
+            "first_name": forms.TextInput(attrs={"class":"form-control"}),
+            "last_name": forms.TextInput(attrs={"class":"form-control"}),
+
+        }
+
+#Additional profile info form
 
 class ProfileUpdateForm(forms.ModelForm):
     class Meta: 
         model= Profile
         fields = ["phone", "department"]
+
+        widgets = {
+            "phone": forms.TextInput(attrs={"class":"form-control"}),
+            "department": forms.TextInput(attrs={"class":"form-control"}),
+
+        }
