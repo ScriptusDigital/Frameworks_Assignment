@@ -25,3 +25,9 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+    #User Updating info on profiles page
+
+class UserUpdateForm(form.ModelForm):
+    email = forms.EmailField(required=True)  
