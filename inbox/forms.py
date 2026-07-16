@@ -27,7 +27,7 @@ class MessageForm(forms.ModelForm):
                 attrs={
                     "class": "form-control",
                     "rows": 5,
-                     "id": "messagebody",
+                     "id": "messageBody",
                       "placeholder": "Write your message",
                 }  
             ),

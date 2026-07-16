@@ -8,7 +8,11 @@ from .models import Message
 #Display messages
 @login_required
 def inbox(request):
-    return render(request, 'inbox.html')
+    received_messages = Message.objects.filter(
+        recipient=request.user,
+        is_archived=False
+    )
+    return render(request, 'inbox.html', {"messages": received_messages})
 
 
 #Sent messages
