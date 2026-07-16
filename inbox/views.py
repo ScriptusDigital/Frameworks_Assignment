@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from .forms import MessageForm
@@ -25,8 +25,8 @@ def archived_messages(request):
 #Compose messages logic and direct
 @login_required
 def compose_message(request):
-    if request.Method == "POST":
-         form - MessageForm(request.POST)
+    if request.method == "POST":
+         form = MessageForm(request.POST)
 
          if form.is_valid():
               message = form.save(commit=False)
@@ -36,10 +36,10 @@ def compose_message(request):
               messages.success(request, "Message sent successfully.")
               return redirect("inbox")
          
-         else:
-              form = MessageForm()
+    else:
+        form = MessageForm()
 
-    return render(request, 'inbox/compose.html')
+    return render(request, 'inbox/compose.html', {"form":form})
 
 # Message details
 @login_required
