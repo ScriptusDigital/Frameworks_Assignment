@@ -9,5 +9,23 @@ class Message(models.Model):
         User, 
         on_delete=models.CASCADE,
         related_name="sent_messages",
-
     )
+
+    recipient = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE,
+        related_name="received_messages",
+    )
+
+    subject = models.CharField(max_length=150)
+    body = models.TextField()
+    is_archived = models.BooleanField(default=False)
+    is_read  = models.BooleanField(default=False)
+    sent_at = models.DateTimeField(auto_now_add=True)
+
+#Default message ordering
+    class Meta:
+        ordering = ["-sent_at"]
+
+    def __str__(self):
+        return self.subject
