@@ -27,7 +27,7 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("projects/", include("projects.urls")),
     path("inbox/", include("inbox.urls")),
-   
+    path("accounts/", include("django.contrib"))
 ]
 
 
