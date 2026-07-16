@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="mb-4">
-<a href="{% url 'project_list' %}" class="text-decoration-none">
-  &larr; Back to Projects
-</a>
+    <a href="{% url 'project_list' %}" class="text-decoration-none">
+        &larr; Back to Projects
+    </a>
 </div>
 <div class="card shadow-sm">
     <div class="card-body">
@@ -21,33 +21,33 @@
             </span>
         </div>
 
-<hr>
-<dl class="row">
-    <dt class="col-sm-3">Start Date</dt>
-    <dd class="col-sm-9"> {{ project.start_date}} </dd>
+        <hr>
+        <dl class="row">
+            <dt class="col-sm-3">Start Date</dt>
+            <dd class="col-sm-9"> {{ project.start_date}} </dd>
 
-        <dt class="col-sm-3">End Date</dt>
-    <dd class="col-sm-9"> {{ project.end_date|default:"Not set" }} </dd>
+            <dt class="col-sm-3">End Date</dt>
+            <dd class="col-sm-9"> {{ project.end_date|default:"Not set" }} </dd>
 
             <dt class="col-sm-3">Description</dt>
-    <dd class="col-sm-9"> {{ project.description }} </dd>
+            <dd class="col-sm-9"> {{ project.description }} </dd>
 
-        <dt class="col-sm-3">Stakeholders</dt>
-    <dd class="col-sm-9"> {{ project.stakeholders }} </dd>
+            <dt class="col-sm-3">Stakeholders</dt>
+            <dd class="col-sm-9"> {{ project.stakeholders }} </dd>
 
-        <dt class="col-sm-3">Category</dt>
-    <dd class="col-sm-9"> {{ project.category|default:"Uncategorised" }} </dd>
+            <dt class="col-sm-3">Category</dt>
+            <dd class="col-sm-9"> {{ project.category|default:"Uncategorised" }} </dd>
 
-</dl>
+        </dl>
 
 
-<div class="d-flex gap-2">
-    
-        <a href="{% url 'project_update' project.pk %}" class="btn btn-outline-primary">Edit</a>
-<a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-danger">Delete</a>
-</div>
+        <div class="d-flex gap-2">
 
-</div>
+            <a href="{% url 'project_update' project.pk %}" class="btn btn-outline-primary">Edit</a>
+            <a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-danger">Delete</a>
+        </div>
+
+    </div>
 </div>
 
 
