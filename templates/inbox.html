@@ -12,6 +12,11 @@
     <a href="{% url 'compose_message' %}" class="btn btn-primary">Compose</a>
      </div>
 
+     <div class="mb-3">
+        <a href="{% url 'sent_messages' %}" class="btn btn-sm btn-outline-secondary">Sent</a>
+                <a href="{% url 'archived_messages' %}" class="btn btn-sm btn-outline-secondary">Archived</a>
+     </div>
+
 
      <div class="card shadow-sm">
         <div class="list-group list-group-flush">
