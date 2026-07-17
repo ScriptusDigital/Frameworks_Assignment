@@ -66,4 +66,19 @@ def message_detail(request, pk):
  #When archiving messages
 @login_required
 def archive_message(request, pk):
-     return render(request, "inbox/message_detail.html", {"message_id":pk},)
+     
+     message = get_object_or_404(
+         Message,
+         pk=pk,
+         recipient=request.user,
+     )
+
+     if request.method == "POST":
+         message.is_archived = True
+         message.save()
+
+         messages.success(request, "Message archived.")
+         return redirect("inbox")
+
+
+     return redirect("message_detail", pk=message.pk)
