@@ -18,7 +18,10 @@ def inbox(request):
 #Sent messages
 @login_required
 def sent_messages(request):
-    return render(request, 'inbox/sent.html')
+
+    sent = Message.objects.filter(sender=request.user)
+
+    return render(request, "inbox/sent.html", {"messages": sent})
 
 
 #Archived messages view
@@ -30,7 +33,7 @@ def archived_messages(request):
         is_archived=True,
     )
 
-    return render(request, 'inbox/archived.html', {"messages": archived})
+    return render(request, 'inbox/archived.html', {"archive_messages": archived})
 
 #Compose messages logic and direct
 @login_required
