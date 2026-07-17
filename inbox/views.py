@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 from .forms import MessageForm
@@ -47,8 +47,21 @@ def compose_message(request):
 
 # Message details
 @login_required
-def message_detail(request, pk):
-        return render(request, 'inbox/message_detail.html', {"message_id":pk},)
+def message_detail(request, pk): 
+    message = get_object_or_404(
+        Message,
+        pk=pk,
+    )
+
+    if message.sender != request.user and message.recipient != request.user:
+        messages.error(request, "You do not have permissions to view that message.")
+        return redirect("inbox")
+    
+    if message.recipient == request.user and not message.is_read:
+        message.is_read = True
+        message.save()
+    
+    return render(request, 'inbox/message_detail.html', {"message":message},)
 
  #When archiving messages
 @login_required
