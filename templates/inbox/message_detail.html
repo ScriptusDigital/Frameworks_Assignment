@@ -23,7 +23,7 @@
                 <p>{{ message.body|linebreaks }} </p>
 
                 {% if message.recipient == user and not message.is_archived %}
-                <form method="post" action="{% url 'archive_message' message.pk %}"></form>
+                <form method="post" action="{% url 'archive_message' message.pk %}">
 
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-secondary confirm-action">
