@@ -21,7 +21,7 @@ def sent_messages(request):
 
     sent = Message.objects.filter(sender=request.user)
 
-    return render(request, "inbox/sent.html", {"messages": sent})
+    return render(request, "inbox/sent.html", {"sent_messages": sent})
 
 
 #Archived messages view
