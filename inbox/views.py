@@ -72,6 +72,20 @@ def message_detail(request, pk):
     
     return render(request, 'inbox/message_detail.html', {"message":message},)
 
+#Reply message function
+@login_required
+def reply_message(request, pk):
+
+
+    return render(
+        request, "inbox/compose.html",
+        {
+            "form": form, #DEFINE LATER
+            },
+    )
+
+
+
  #When archiving messages
 @login_required
 def archive_message(request, pk):
