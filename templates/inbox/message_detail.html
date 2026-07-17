@@ -4,7 +4,7 @@
 
 <div class="mb-4">
     <a href="{% url 'inbox' %}" class="text-decoration-none">&larr; Back to Inbox
-     </a>
+    </a>
     <div>
 
         <div class="card shadow-sm">
@@ -16,24 +16,28 @@
                     To: {{ message.recipient.username }} |
                     {{ message.sent_at }}
 
-
-
                 </p>
 
+                <hr>
+
+                <p>{{ message.body|linebreaks }} </p>
+
+                {% if message.recipient == user and not message.is_archived %}
+                <form method="post" action="{% url 'archive_message' message.pk %}"></form>
+
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-secondary confirm-action">
+
+                    Archive Message
+                </button>
+
+                </form>
+                {% endif %}
 
 
 
             </div>
-
-
-
-
-
         </div>
-        <p class="text-muted mb-0"> View and manage your messages.</p>
-    </div>
-    
-    
-    
 
-       {% endblock %}
+
+    {% endblock %}
