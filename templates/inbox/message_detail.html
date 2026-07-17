@@ -26,6 +26,11 @@
                 <form method="post" action="{% url 'archive_message' message.pk %}">
 
                 {% csrf_token %}
+
+                <a href="{% url 'reply_message' message.pk %}" class="btn btn-primary me-2">
+                    Reply
+                </a>
+
                 <button type="submit" class="btn btn-outline-secondary confirm-action">
 
                     Archive Message

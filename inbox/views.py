@@ -72,16 +72,49 @@ def message_detail(request, pk):
     
     return render(request, 'inbox/message_detail.html', {"message":message},)
 
-#Reply message function
+#Reply message function - repurposing the existing compose template
 @login_required
 def reply_message(request, pk):
 
+    original = get_object_or_404(
+        Message, 
+        pk=pk,
+    )
+
+    if original.sender !=request.user and original.recipient != request.user:
+        messages.error(request, "You do not have permission to reply.")
+        return redirect("inbox")
+    
+    subject = original.subject
+
+    if not subject.startswith("Re:"):
+        subject = f"Re: {subject}"
+    
+    if request.method == "POST":
+
+        form = MessageForm(request.POST)
+
+        if form.is_valid():
+
+            reply = form.save(commit=False)
+            reply.sender = request.user
+            reply.save()
+
+            messages.success(request, "Reply sent successfully.")
+            return redirect("inbox")
+        
+    else:
+
+        form = MessageForm(
+        initial={
+            "recipient": original.sender,
+            "subject": subject,
+                }
+            )
+
 
     return render(
-        request, "inbox/compose.html",
-        {
-            "form": form, #DEFINE LATER
-            },
+        request, "inbox/compose.html", {"form": form, },
     )
 
 
