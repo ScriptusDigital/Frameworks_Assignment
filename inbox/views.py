@@ -24,7 +24,13 @@ def sent_messages(request):
 #Archived messages view
 @login_required
 def archived_messages(request):
-    return render(request, 'inbox/archived.html')
+
+    archived = Message.objects.filter(
+        recipient=request.user,
+        is_archived=True,
+    )
+
+    return render(request, 'inbox/archived.html', {"messages": archived})
 
 #Compose messages logic and direct
 @login_required
