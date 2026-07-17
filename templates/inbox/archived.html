@@ -12,14 +12,14 @@
         <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action">
             <div class="d-flex justify-content-between">
                 <strong>{{ message.subject }}</strong>
-                <small class="text-muted">{{ mesage.sent_at }} </small>
+                <small class="text-muted">{{ message.sent_at }} </small>
             </div>
             <div class="text-muted">From: {{ message.sender.username }}
 
             </div>
         </a>
         {% empty %}
-        
+
         <div class="list-group-item text-muted">
             No archived messages
         </div>
