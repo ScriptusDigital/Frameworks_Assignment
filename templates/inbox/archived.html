@@ -3,21 +3,31 @@
 {% block content %}
 
 <h1>Archived Messages</h1>
-    <p class="text-muted"> Messages you have archived.</p>
+<p class="text-muted"> Messages you have archived.</p>
 
 <div class="card shadow-sm">
 
-<div class="list-group list-group-flush">
-    {% for message in archived_archived_messages %}
+    <div class="list-group list-group-flush">
+        {% for message in archived_messages %}
         <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action">
             <div class="d-flex justify-content-between">
                 <strong>{{ message.subject }}</strong>
+                <small class="text-muted">{{ mesage.sent_at }} </small>
+            </div>
+            <div class="text-muted">From: {{ message.sender.username }}
+
             </div>
         </a>
+        {% empty %}
+        
+        <div class="list-group-item text-muted">
+            No archived messages
+        </div>
+
+        {% endfor %}
 
 
-
-</div>
+    </div>
 </div>
 
 

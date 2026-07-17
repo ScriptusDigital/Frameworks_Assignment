@@ -33,7 +33,7 @@ def archived_messages(request):
         is_archived=True,
     )
 
-    return render(request, 'inbox/archived.html', {"archive_messages": archived})
+    return render(request, 'inbox/archived.html', {"archived_messages": archived})
 
 #Compose messages logic and direct
 @login_required
