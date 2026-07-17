@@ -85,6 +85,8 @@ def reply_message(request, pk):
         messages.error(request, "You do not have permission to reply.")
         return redirect("inbox")
     
+
+    
     subject = original.subject
 
     if not subject.startswith("Re:"):
@@ -109,9 +111,15 @@ def reply_message(request, pk):
         initial={
             "recipient": original.sender,
             "subject": subject,
+            "body": (
+                "\n\n"
+                "--------------------------------------\n"
+                f"On {original.sent_at:%d %b %Y %H %M}, "
+                f"{original.sender.username} wrote:\n\n"
+                f"{original.body}"
+            ),
                 }
             )
-
 
     return render(
         request, "inbox/compose.html", {"form": form, },
