@@ -5,13 +5,28 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import redirect, render
 
+from inbox.models import Message
 from projects.models import Project
 
 from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from .models import Profile
 
+
+#Dashboard fetches for projects and message displays
 @login_required
 def dashboard(request):
+
+    user_projects = Project.objects.filter(owner=request.user)
+    received_messages = Message.objects.filter(recipient=request.user)
+
+    context = {
+        "total_projects": user_projects.count(),
+        "active_projects": user_projects.filter(status="active").count(),
+        "unread_messages": received_messages.filter(is_read=False, is_archived=False).count(),
+
+    }
+
+
     return render(request, 'dashboard.html')
 
 
