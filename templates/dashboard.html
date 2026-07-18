@@ -51,7 +51,7 @@
 
 <div class="row g-3">
     <div class="col-md-4">
-        <div class="card shard-sm h-100">
+        <div class="card shadow-sm h-100">
             <div class="card-body">
                 <h5>Projects</h5>
                 <p class="text-muted">
@@ -59,42 +59,39 @@
                 </p>
 
                 <a href="{% url 'project_list' %}" class="btn btn-primary">View Projects</a>
-
             </div>
         </div>
     </div>
 
 
-
-    <div class="row g-3">
         <div class="col-md-4">
-            <div class="card shard-sm h-100">
+            <div class="card shadow-sm h-100">
                 <div class="card-body">
-                    <h5>Projects</h5>
+                    <h5>Inbox</h5>
                     <p class="text-muted">
                         Send, receive and archive messages.
                     </p>
 
                     <a href="{% url 'inbox' %}" class="btn btn-primary">Open Inbox</a>
-
+                     </div>    
                 </div>
             </div>
-        </div>
 
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="card shard-sm h-100">
-                    <div class="card-body">
-                        <h5>Projects</h5>
-                        <p class="text-muted">
-                            Update personal and contact details.
-                        </p>
 
-                        <a href="{% url 'project_list' %}" class="btn btn-primary">Profile</a>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5>Profile</h5>
+                            <p class="text-muted">
+                                Update your personal and contact details.
+                            </p>
 
+                            <a href="{% url 'profile' %}" class="btn btn-primary">Edit Profile</a>
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        {% endblock %}
+            {% endblock %}
