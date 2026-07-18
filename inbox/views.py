@@ -12,7 +12,7 @@ def inbox(request):
         recipient=request.user,
         is_archived=False
     )
-    return render(request, 'inbox.html', {"received_messages": received_messages})
+    return render(request, 'inbox/inbox.html', {"received_messages": received_messages})
 
 
 #Sent messages
