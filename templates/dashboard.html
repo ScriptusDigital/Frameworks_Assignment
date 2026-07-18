@@ -12,51 +12,42 @@
     <div class="col-md-3">
         <div class="card shadow-sm">
             <div class="card-body">
-            <div class="text-muted small">Total Projects</div>
-            <div class="display-6">{{ total_projects }} </div>
+                <div class="text-muted small">Total Projects</div>
+                <div class="display-6">{{ total_projects }} </div>
 
+            </div>
         </div>
     </div>
-</div>
 
-<div class="col-md-3">
-    <div class="card shadow-sm">
-         <div class="card-body">
-        <div class="text-muted small">Active Projects</div>
-        <div class="display-6">{{ active_projects }} </div>
-    </div>
-</div>
-</div>
-
-<div class="col-md-3">
-    <div class="card shadow-sm">
-        <div class="card-body">
-        <div class="text-muted small">Unread Messages</div>
-        <div class="display-6">{{ unread_messages }} </div>
-    </div>
-</div>
-</div>
-
-<div class="col-md-3">
-    <div class="card shadow-sm">
-        <div class="card-body">
-        <div class="text-muted small">Archived</div>
-        <div class="display-6">{{ archived_messages }} </div>
-    </div>
-</div>
-
-
-</div>
-<div class="col-md-4">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Projects</h5>
-            <p class="card-text">View and manage your projects.</p>
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="text-muted small">Active Projects</div>
+                <div class="display-6">{{ active_projects }} </div>
+            </div>
         </div>
     </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="text-muted small">Unread Messages</div>
+                <div class="display-6">{{ unread_messages }} </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="text-muted small">Archived</div>
+                <div class="display-6">{{ archived_messages }} </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-</div>
-<!-----------Placeholder projects bt-->
+
 
 <div class="row g-3">
     <div class="col-md-4">
@@ -64,22 +55,46 @@
             <div class="card-body">
                 <h5>Projects</h5>
                 <p class="text-muted">
-                    Create, update, and manage project records
+                    Create, update, and manage project records.
                 </p>
 
+                <a href="{% url 'project_list' %}" class="btn btn-primary">View Projects</a>
 
             </div>
         </div>
     </div>
 
-<a href="{% url 'project_list' %}" class="btn btn-primary">View Projects</a>
-
-<!-----------Placeholder Inbox bt-->
-
-<a href="{% url 'inbox' %}" class="btn btn-primary">Open Inbox</a>
 
 
-<!-----------Placeholder profile bt-->
-<a href="{% url 'project_list' %}" class="btn btn-primary">Profile</a>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="card shard-sm h-100">
+                <div class="card-body">
+                    <h5>Projects</h5>
+                    <p class="text-muted">
+                        Send, receive and archive messages.
+                    </p>
 
-{% endblock %}
+                    <a href="{% url 'inbox' %}" class="btn btn-primary">Open Inbox</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card shard-sm h-100">
+                    <div class="card-body">
+                        <h5>Projects</h5>
+                        <p class="text-muted">
+                            Update personal and contact details.
+                        </p>
+
+                        <a href="{% url 'project_list' %}" class="btn btn-primary">Profile</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}
