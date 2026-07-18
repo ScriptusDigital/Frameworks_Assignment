@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="mt-4">
-    <h1>Welcome to ProjectPilot Dashboard</h1>
+<div class="mb-4">
+    <h1 class="mb-1">Dashboard</h1>
     <p class="text-muted mb-0">
         Welcome back, {{ user.username}}.
     </p>
@@ -13,7 +13,7 @@
         <div class="card shadow-sm">
             <div class="card-body">
             <div class="text-muted small">Total Projects</div>
-            <div class="display-6">{{ total_projects}} </div>
+            <div class="display-6">{{ total_projects }} </div>
 
         </div>
     </div>
@@ -21,6 +21,7 @@
 
 <div class="col-md-3">
     <div class="card shadow-sm">
+         <div class="card-body">
         <div class="text-muted small">Active Projects</div>
         <div class="display-6">{{ active_projects }} </div>
     </div>
@@ -29,6 +30,7 @@
 
 <div class="col-md-3">
     <div class="card shadow-sm">
+        <div class="card-body">
         <div class="text-muted small">Unread Messages</div>
         <div class="display-6">{{ unread_messages }} </div>
     </div>
@@ -37,6 +39,7 @@
 
 <div class="col-md-3">
     <div class="card shadow-sm">
+        <div class="card-body">
         <div class="text-muted small">Archived</div>
         <div class="display-6">{{ archived_messages }} </div>
     </div>
