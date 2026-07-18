@@ -23,11 +23,11 @@ def dashboard(request):
         "total_projects": user_projects.count(),
         "active_projects": user_projects.filter(status="active").count(),
         "unread_messages": received_messages.filter(is_read=False, is_archived=False).count(),
-        "archived_messages": received_messages.filter(is_archived=True)
+        "archived_messages": received_messages.filter(is_archived=True).count()
     }
 
 
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html',context)
 
 
 def register(request):
