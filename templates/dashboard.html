@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="mt-4">
     <h1>Welcome to ProjectPilot Dashboard</h1>
+    <p class="text-muted mb-0">
+        Welcome back, {{ user.username}}
+    </p>
+    </div>
     <p>This is your dashboard where you can manage your projects and tasks.</p>
     <div class="row mt-4">
 
