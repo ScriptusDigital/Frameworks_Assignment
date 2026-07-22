@@ -2,44 +2,93 @@
 
 {% block content %}
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<!---Inbox heading--->
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
     <div>
         <h1 class="mb-1">Inbox</h1>
         <p class="text-muted mb-0"> View and manage your messages.</p>
     </div>
 
 
-    <a href="{% url 'compose_message' %}" class="btn btn-primary">Compose</a>
+    <a href="{% url 'compose_message' %}" class="btn btn-primary">Compose Message</a>
 </div>
 
-<div class="mb-3">
+<!----Inbox nav-->
+<div class="d-flex gap-2 mb-3">
     <a href="{% url 'sent_messages' %}" class="btn btn-sm btn-outline-secondary">Sent</a>
     <a href="{% url 'archived_messages' %}" class="btn btn-sm btn-outline-secondary">Archived</a>
 </div>
 
+<!---Message list-->
 
 <div class="card shadow-sm">
     <div class="list-group list-group-flush">
         {% for message in received_messages %}
 
-        <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action">
-            <div class="d-flex justify-content-between">
-                <strong>
-                    {% if not message.is_read %}●{% endif %}
-                    {{ message.subject }}
-                </strong>
-                <small class="text-muted">{{ message.sent_at }}</small>
+        <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action py-3">
+            <div class="d-flex align-items-start gap-3">
 
+<!---Sender initial-->
+
+                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px;">
+
+                    {{message.sender.username|first|upper }}
+
+                    </div>
+<!---Message info-->
+
+    <div class="flex-grow-1">
+        <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div>
+                <div class="d-flex align-items-center flex-wrap gap-2">
+
+                    {% if not message.is_read %}
+                    <span class="badge bg-primary">
+                        New
+                    </span>
+
+                    {% endif%}
+
+                    <span class="{% if not message.is_read %} fw-bold{% else %}fw-semibold{% endif %}">
+                        {{ message.subject }}
+                    </span>
+
+                </div>
+
+                <div class="small text_muted mt-1">
+                    From: {{ message.sender.username }}
+                </div>
             </div>
-            <div class="text-muted">From: {{ message.sender.username }}</div>
-        </a>
-        {% empty %}
-        <div class="list-group-item text-muted">
-            No messages in your inbox.
+
+            <small class="text-muted flex-shrink-0">
+                {{ message.sent_at|date:"j M Y, H:i"}}
+            </small>
         </div>
-        {% endfor %}
+
+        <div class="text-muted small mt-2">
+                 {{ message.body|truncatechars:100 }}
+
+        </div>
     </div>
 </div>
 
+</a>
 
+{% empty %}
+
+<div class="list-group-item text-center py-5">
+    <h2 class="h5 mb-2">Your inbox is empty</h2>
+    <p class="text-muted mb-3">
+        You currently have no received messages
+    </p>
+
+    <a href="{% url 'compose_message' %}" class="btn btn-primary btn-sm">
+        Compose a Message</a>
+
+</div>
+
+{% endfor %}
+    </div>
+</div>
 {% endblock %}
