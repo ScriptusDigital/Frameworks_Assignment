@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render
 
 from inbox.models import Message
 from projects.models import Project
+from django.utils import timezone
 
 from .forms import UserRegisterForm, ProfileUpdateForm, UserUpdateForm
 from .models import Profile
@@ -19,11 +20,23 @@ def dashboard(request):
     user_projects = Project.objects.filter(owner=request.user)
     received_messages = Message.objects.filter(recipient=request.user)
 
+    today = timezone.now().date()
+
     next_project = (
         user_projects
         .filter(end_date__isnull=False)
         .order_by("end_date")
         .first()
+    )
+
+    overdue_projects = (
+        user_projects.filter(
+            end_date__isnull=False,
+            end_date__lt=today
+        )
+
+        .exclude(status="completed")
+        .order_by("end_date")
     )
 
     context = {
@@ -32,11 +45,14 @@ def dashboard(request):
         "unread_messages": received_messages.filter(is_read=False, is_archived=False).count(),
         "archived_messages": received_messages.filter(is_archived=True).count(),
         "next_project": next_project,
+        "overdue_projects": overdue_projects,
     }
 
 
     return render(request, 'dashboard.html',context)
 
+
+#User creation logic 
 
 def register(request):
     if request.method == 'POST':
