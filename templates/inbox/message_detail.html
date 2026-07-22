@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<div class="mb-4">
+<!----Condition for if message has been archived or not-->
+<div class="mb-2">
+{% if message.is_archived %}
+ <a href="{% url 'archived_messages' %}" class="text-decoration-none">&larr; Back to Archive
+    </a>
+{% else %}
+    <!----If not archived-->
     <a href="{% url 'inbox' %}" class="text-decoration-none">&larr; Back to Inbox
     </a>
+    {% endif%}
 </div>
 
 <div class="card shadow-sm">
