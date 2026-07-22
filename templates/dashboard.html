@@ -70,7 +70,6 @@
         <div class="card-body p-4 d-flex flex-column">
 
             <div class="mb-3">
-                <div>
                     <div class="text-muted small mb-1">
                         Upcoming Project Deadline
                     </div>
@@ -87,7 +86,7 @@
 
                     {{ next_project.name }}
                 </h3>
-<div class="row g-3">
+<div class="row g-3 mb-4">
         <div class="col-sm-6">
             <div class="text-muted small">
                 Deadline
@@ -107,21 +106,17 @@
             <div>
                 <span class="badge bg-primary">
                     {{ next_project.get_status_display }}
-
-
-                </span>
+               </span>
             </div>
         </div>
-    </div>
-</div>
-
-        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        
+        <div class="mt-auto">
+        
             <a href="{% url 'project_detail' next_project.pk %}" class="btn btn-primary">
             View Project
             </a>
         </div>
 
-    </div>
 
     {% else %}
 
@@ -131,9 +126,69 @@
 
         {% endif %}
 
+            </div>
+        </div>
+    </div>
 </div>
+<!----Overdue projects-->
+<div class="col-lg-6">
+    <div class="card shadow-sm border-danger h-100">
+        <div class="card-body p-4">
+            <div class="mb-3">
+                <div class="text-danger small mb-1">
+                Attention Required
+
+                </div>
+
+                <h2 class="h4 mb-0">
+                    Overdue Projects
+
+                </h2>
+            </div>
+
+            {% if overdue_projects %}
+
+            <div class="list-group list-group-flush">
+
+               {% for project in overdue_projects %} 
+
+               <div class="list-group-item px-0">
+<div class="d-flex flex-column flex-sm-row justify-content-between gap-2">
+    <div>
+        <div class="fw-semibold">
+
+            {{ project.name }}
+        </div>
+        <div class="text-danger small">
+            Deadline: 
+            {{ project.end_date|date:"j F Y" }}
+             
+
+        </div>
+    </div>
+               <a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-outline-danger">
+                View
+               </a>
+            </div>
+    </div>
+
+    {% endfor %}
+
 </div>
 
+    {% else %}
+
+    <div class="alert alert-success mb-0">
+         You currently have no overdue projects.
+
+    </div>
+
+       {% endif %}
+
+            </div>
+       </div>
+    </div>
+</div>
 <!----Main app sections-->
 
 
