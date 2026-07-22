@@ -7,42 +7,42 @@
     </a>
 </div>
 
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h1 class="h4">{{ message.subject }}</h1>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h1 class="h4">{{ message.subject }}</h1>
 
-                <p class="text-muted">
-                    From: {{ message.sender.username }} |
-                    To: {{ message.recipient.username }} |
-                    {{ message.sent_at }}
+        <p class="text-muted">
+            From: {{ message.sender.username }} |
+            To: {{ message.recipient.username }} |
+            {{ message.sent_at }}
 
-                </p>
+        </p>
 
-                <hr>
+        <hr>
 
-                <p>{{ message.body|linebreaks }} </p>
+        <p>{{ message.body|linebreaks }} </p>
 
-                {% if message.recipient == user and not message.is_archived %}
-                <form method="post" action="{% url 'archive_message' message.pk %}">
+        {% if message.recipient == user and not message.is_archived %}
+        <form method="post" action="{% url 'archive_message' message.pk %}">
 
-                {% csrf_token %}
+            {% csrf_token %}
 
-                <a href="{% url 'reply_message' message.pk %}" class="btn btn-primary me-2">
-                    Reply / Forward
-                </a>
+            <a href="{% url 'reply_message' message.pk %}" class="btn btn-primary me-2">
+                Reply / Forward
+            </a>
 
-                <button type="submit" class="btn btn-outline-secondary confirm-action">
+            <button type="submit" class="btn btn-outline-secondary confirm-action">
 
-                    Archive Message
-                </button>
+                Archive Message
+            </button>
 
-                </form>
-                {% endif %}
-
-
-
-            </div>
-        </div>
+        </form>
+        {% endif %}
 
 
-    {% endblock %}
+
+    </div>
+</div>
+
+
+{% endblock %}

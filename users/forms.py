@@ -30,7 +30,7 @@ class UserRegisterForm(UserCreationForm):
 
 
 #User Updating info on profiles page
-#Widgets define how form fields rendered in HTML bootstrap
+#Widgets defining how form fields rendered in HTML bootstrap
 
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(  
@@ -48,6 +48,16 @@ class UserUpdateForm(forms.ModelForm):
             "last_name": forms.TextInput(attrs={"class":"form-control"}),
 
         }
+
+#Ensuring emails are unique
+
+def clean_email(self):
+    email= self.cleaned_data["email"]
+
+    if User.objects.filter(email=email).exists():
+        raise forms.ValidationError(
+            "An account with this email address already exists."
+        )
 
 #Additional profile info form
 

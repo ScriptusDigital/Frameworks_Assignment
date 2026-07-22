@@ -10,36 +10,36 @@
 
 
     <a href="{% url 'compose_message' %}" class="btn btn-primary">Compose</a>
-     </div>
+</div>
 
-     <div class="mb-3">
-        <a href="{% url 'sent_messages' %}" class="btn btn-sm btn-outline-secondary">Sent</a>
-                <a href="{% url 'archived_messages' %}" class="btn btn-sm btn-outline-secondary">Archived</a>
-     </div>
+<div class="mb-3">
+    <a href="{% url 'sent_messages' %}" class="btn btn-sm btn-outline-secondary">Sent</a>
+    <a href="{% url 'archived_messages' %}" class="btn btn-sm btn-outline-secondary">Archived</a>
+</div>
 
 
-     <div class="card shadow-sm">
-        <div class="list-group list-group-flush">
-            {% for message in received_messages %}
+<div class="card shadow-sm">
+    <div class="list-group list-group-flush">
+        {% for message in received_messages %}
 
-            <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action">
-                <div class="d-flex justify-content-between">
-                    <strong>
-                        {% if not message.is_read %}●{% endif %}
-                        {{ message.subject }}
-                    </strong>
-                    <small class="text-muted">{{ message.sent_at }}</small>
+        <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action">
+            <div class="d-flex justify-content-between">
+                <strong>
+                    {% if not message.is_read %}●{% endif %}
+                    {{ message.subject }}
+                </strong>
+                <small class="text-muted">{{ message.sent_at }}</small>
 
-                </div>
-                <div class="text-muted">From: {{ message.sender.username }}</div>
-            </a>
-            {% empty %}
-            <div class="list-group-item text-muted">
-                No messages in your inbox.
             </div>
-            {% endfor %}
+            <div class="text-muted">From: {{ message.sender.username }}</div>
+        </a>
+        {% empty %}
+        <div class="list-group-item text-muted">
+            No messages in your inbox.
         </div>
-     </div>
+        {% endfor %}
+    </div>
+</div>
 
 
 {% endblock %}
