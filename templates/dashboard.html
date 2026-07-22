@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+
+<!---Dashboard heading---->
 <div class="mb-4">
     <h1 class="mb-1">Dashboard</h1>
     <p class="text-muted mb-0">
@@ -8,19 +11,20 @@
     </p>
 </div>
 
+<!---Dashboard stats---->
 <div class="row g-3 mb-4">
-    <div class="col-md-3">
-        <div class="card shadow-sm">
+    <div class="col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100">
             <div class="card-body">
-                <div class="text-muted small">Total Projects</div>
+                <div class="text-muted small mb-1">Total Projects</div>
                 <div class="display-6">{{ total_projects }} </div>
 
             </div>
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card shadow-sm">
+    <div class="col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100">
             <div class="card-body">
                 <div class="text-muted small">Active Projects</div>
                 <div class="display-6">{{ active_projects }} </div>
@@ -28,10 +32,10 @@
         </div>
     </div>
 
-    <div class="col-md-3">
-        <div class="card shadow-sm">
+    <div class="col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100">
             <div class="card-body">
-                <div class="text-muted small">Unread Messages</div>
+                <div class="text-muted small mb-1">Unread Messages</div>
                 <div class="display-6">{{ unread_messages }} </div>
             </div>
         </div>
