@@ -24,9 +24,10 @@
 <div class="row g-3 mb-4">
     <div class="col-sm-6 col-lg-3">
         <div class="card shadow-sm h-100">
-            <div class="card-body">
+            <div class="card-body text-center">
                 <div class="text-muted small mb-1">Total Projects</div>
-                <div class="display-6">{{ total_projects }} </div>
+                <div class="display-5 fw-semibold">
+                    {{ total_projects }} </div>
 
             </div>
         </div>
@@ -34,27 +35,30 @@
 
     <div class="col-sm-6 col-lg-3">
         <div class="card shadow-sm h-100">
-            <div class="card-body">
+                 <div class="card-body text-center">
                 <div class="text-muted small">Active Projects</div>
-                <div class="display-6">{{ active_projects }} </div>
+                  <div class="display-5 fw-semibold">
+                    {{ active_projects }} </div>
             </div>
         </div>
     </div>
 
     <div class="col-sm-6 col-lg-3">
         <div class="card shadow-sm h-100">
-            <div class="card-body">
+            <div class="card-body text-center">
                 <div class="text-muted small mb-1">Unread Messages</div>
-                <div class="display-6">{{ unread_messages }} </div>
+                       <div class="display-5 fw-semibold">
+                    {{ unread_messages }} </div>
             </div>
         </div>
     </div>
 
     <div class="col-sm-6 col-lg-3">
         <div class="card shadow-sm h-100">
-            <div class="card-body">
+             <div class="card-body text-center">
                 <div class="text-muted small mb-1">Archived Messages</div>
-                <div class="display-6">{{ archived_messages }} </div>
+                  <div class="display-5 fw-semibold">
+                    {{ archived_messages }} </div>
             </div>
         </div>
 
@@ -86,7 +90,7 @@
 
                     {{ next_project.name }}
                 </h3>
-<div class="row g-3 mb-4">
+<div class="row g-3">
         <div class="col-sm-6">
             <div class="text-muted small">
                 Deadline
@@ -110,9 +114,9 @@
             </div>
         </div>
         
-        <div class="mt-auto">
+        <div class="text-center mt-5">
         
-            <a href="{% url 'project_detail' next_project.pk %}" class="btn btn-primary">
+            <a href="{% url 'project_detail' next_project.pk %}" class="btn btn-primary px-5">
             View Project
             </a>
         </div>
@@ -166,10 +170,16 @@
 
         </div>
     </div>
-               <a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-outline-danger">
+
+            <div class="mt-auto pt-3">
+        
+     
+
+               <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-danger">
                 View
                </a>
             </div>
+              </div>
     </div>
 
     {% endfor %}
@@ -201,7 +211,8 @@
                     Create, update, and manage project records.
                 </p>
 
-                <a href="{% url 'project_list' %}" class="btn btn-primary align-self-start">View Projects</a>
+                <a href="{% url 'project_list' %}" class="btn btn-primary w-100 mt-auto"
+                >View Projects</a>
             </div>
         </div>
     </div>
@@ -215,7 +226,8 @@
                         Send, receive and archive messages.
                     </p>
 
-                    <a href="{% url 'inbox' %}" class="btn btn-primary align-self-start">Open Inbox</a>
+                    <a href="{% url 'inbox' %}" class="btn btn-primary w-100 mt-auto">
+                        Open Inbox</a>
                      </div>    
                 </div>
             </div>
@@ -229,7 +241,8 @@
                                 Update your personal and contact details.
                             </p>
 
-                            <a href="{% url 'profile' %}" class="btn btn-primary align-self-start">Edit Profile</a>
+                            <a href="{% url 'profile' %}" class="btn btn-primary w-100 mt-auto">
+                                Edit Profile</a>
 
 
                         </div>
