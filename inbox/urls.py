@@ -9,5 +9,5 @@ urlpatterns = [
     path("<int:pk>/", views.message_detail, name="message_detail"),
     path("<int:pk>/archive/", views.archive_message, name="archive_message"),
     path("<int:pk>/reply/", views.reply_message, name="reply_message",),
-
+    path("message/<int:pk>/unarchive/",views.unarchive_message, name="unarchive_message",),
 ]

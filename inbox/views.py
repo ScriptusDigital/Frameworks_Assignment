@@ -35,6 +35,21 @@ def archived_messages(request):
 
     return render(request, 'inbox/archived.html', {"archived_messages": archived})
 
+#Unarchiving messages
+
+def unarchive_message(request,pk):
+    message = get_object_or_404(
+        Message,
+        pk=pk,
+        recipient=request.user
+    )
+    message.is_archived = False
+    message.save()
+
+    messages.success(request, "Message restored to inbox.")
+
+    return redirect("archived_messages")
+
 #Compose messages logic and direct
 @login_required
 def compose_message(request):
