@@ -17,6 +17,10 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['name', 'description', 'start_date', 'end_date', 'stakeholders', 'status', 'category']
+
+        labels = {
+            'end_date': 'Deadline',
+        }
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control',
@@ -39,6 +43,6 @@ class ProjectForm(forms.ModelForm):
         end_date = cleaned_data.get('end_date')
 
         if start_date and end_date and start_date > end_date:
-            raise forms.ValidationError("End date should be greater than or equal to start date.")
+            raise forms.ValidationError("Deadline must be on or after the start date.")
         
         return cleaned_data

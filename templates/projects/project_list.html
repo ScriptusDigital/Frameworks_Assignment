@@ -26,6 +26,7 @@
                         {% endif %}
                         <th>Status</th>
                         <th>Start Date</th>
+                        <th>Deadline</th>
                         <th>Stakeholders</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -40,6 +41,7 @@
                         {% endif %}
                         <td>{{ project.get_status_display }}</td>
                         <td>{{ project.start_date }}</td>
+                        <td>{{ project.end_date }}</td>
                         <td>{{ project.stakeholders|truncatechars:50 }}</td>
                         <td class="text-center">
                             <div class="d-flex flex-column flex-md-row gap-2 justify-content-center">
