@@ -54,9 +54,33 @@
 <!-----Next project deadline/end date-->
 <div class="card shadow-sm border-primary mb-4">
         <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-start"
+            <div class="d-flex justify-content-between align-items-start mb-3"></div>
+                <div>
+                    <div class="text-muted small mb-1">
+                        Upcoming Project Deadline
+                    </div>
+
+                    <h2 class="h4 mb-0">
+                        Next Project Due
+                    </h2>
+
+            </div>
+        </div>
+
+        {% if next_project %}
+
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h3 class="h5 mb-3">
+
+                    {{ next_project.name }}
+                </h3>
+            </div>
+
+
 
         </div>
+
 </div>
 
 
