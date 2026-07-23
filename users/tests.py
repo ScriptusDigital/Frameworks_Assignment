@@ -16,12 +16,13 @@ class UserFormTest(TestCase):
             data={
                 "username":"newuser",
                 "email":"newuser@example.com",
-                "password":"SecureTestPassword123!",
+                "password1": "A7!qZ9@kLm2#Vp8$",
+                "password2": "A7!qZ9@kLm2#Vp8$",
 
             }
         )
 
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
 
 @override_settings(
      STORAGES={
@@ -37,7 +38,7 @@ class UserViewTests(TestCase):
         self.user = User.objects.create_user(
             username="profileuser",
             email="old@example,com",
-            password="testpassword123",
+            password="A7!qZ9@kLm2#Vp8$",
         )
 
         self.profile = Profile.objects.create(
@@ -52,8 +53,8 @@ class UserViewTests(TestCase):
             {
                 "username":"newuser",
                 "email":"newuser@example.com",
-                "password1":"SecureTestPassword123!",
-                "password2":"SecureTestPassword123!",
+                "password1":"A7!qZ9@kLm2#Vp8$!",
+                "password2":"A7!qZ9@kLm2#Vp8$!",
             }
         )
 
@@ -66,7 +67,40 @@ class UserViewTests(TestCase):
         )
 
         self.assertTrue(
-            user.check_password("SecureTestPassword123!")
+            user.check_password("A7!qZ9@kLm2#Vp8$!")
         )
 
 #Profile requires login
+
+    def test_profile_requires_login(self):
+        response = self.client.get(reverse("profile"))
+         
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse("login"), response.url)
+
+#User update profile info
+    def test_user_can_update_profile(self):
+        self.client.force_login(self.user)
+
+        response = self.client.post(
+            reverse("profile"),
+            {
+                "first_name": "Richard",
+                "last_name": "Davies",
+                "email": "richard@example.com",
+                "phone": "0123456789",
+                "department": "Development",
+            },
+        )
+
+        self.assertEqual(response.status_code, 302)
+
+
+        self.user.refresh_from_db()
+        self.profile.refresh_from_db()
+
+        self.assertEqual(self.user.first_name, "Richard")
+        self.assertEqual(self.user.last_name, "Davies")
+        self.assertEqual(self.user.email, "richard@example.com",)
+        self.assertEqual(self.profile.department, "Development",)
