@@ -86,7 +86,7 @@ class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/projects/'
 
     def get_queryset(self):
-        if self.request.user.has_perm('projects.can_view_all_projects'):
+        if user_can_view_all_projects(self.request.user):
             return Project.objects.all()
         
         return Project.objects.filter(owner=self.request.user)

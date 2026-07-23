@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from.models import Profile
+from .models import Profile
 
 #User Registration  
 class UserRegisterForm(UserCreationForm):
@@ -51,13 +51,19 @@ class UserUpdateForm(forms.ModelForm):
 
 #Ensuring emails are unique
 
-def clean_email(self):
-    email= self.cleaned_data["email"]
+    def clean_email(self):
+        email= self.cleaned_data["email"]
 
-    if User.objects.filter(email=email).exists():
-        raise forms.ValidationError(
-            "An account with this email address already exists."
-        )
+        if (User.objects
+        .filter(email__iexact=email)
+        .exclude(pk=self.instance.pk)
+        .exists()
+        ):
+            raise forms.ValidationError(
+                "An account with this email address already exists."
+            )
+
+        return email
 
 #Additional profile info form
 
