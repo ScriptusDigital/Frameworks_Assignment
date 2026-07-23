@@ -13,14 +13,14 @@ class ProjectModelTests(TestCase):
         cls.user = User.objects.create(
             username="testuser",
             password="testpassword123",
-        )
+    )
 
-    class.category - Category.objects.create(
+        cls.category = Category.objects.create(
         name="Web Development",
     )
 
 
-    cls.project = Project.objects.create(
+        cls.project = Project.objects.create(
          owner=cls.user,
             name="Test Project",
             description="This is a test project.",
@@ -37,7 +37,7 @@ class ProjectModelTests(TestCase):
         self.assertEqual(project.owner.username, "testuser")
         self.assertEqual(project.name, "Test Project")
         self.assertEqual(project.status, "planning")
-        self.assertEqual(project.category,name, "Web Development")
+        self.assertEqual(project.category.name, "Web Development")
 
     def test_project_str_method(self):
         self.assertEqual(str(self.project), "Test Project")
