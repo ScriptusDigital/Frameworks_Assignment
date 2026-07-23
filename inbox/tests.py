@@ -101,3 +101,43 @@ class InboxViewTests(TestCase):
         self.message.refresh_from_db()
         self.assertTrue(self.message.is_read)
 
+
+    def test_outseider_cannot_view_message(self):
+        self.client.login(
+            username="outsider",
+            password="testpassword123",
+        )
+
+        response = self.client.get(
+            reverse("message_detail", args=[self.message.pk])
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("inbox"))
+
+
+    def test_user_can_send_message(self):
+        self.client.login(
+            username="senduser",
+            password="testpassword123",
+        )
+
+
+        response = self.client.post(
+         reverse("compose_message"),
+        {  
+            "recipient": self.recipient.pk,
+            "subject": "New Test Message",
+            "body": "This message was created during testing.",
+            },
+        )
+
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(
+             Message.objects.filter(
+                sender=self.sender,
+                recipient=self.recipient,
+                subject="New Test Message",
+            ).exists()
+        )
+
