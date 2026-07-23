@@ -72,10 +72,8 @@ class InboxViewTests(TestCase):
         )
 
     def test_recipient_can_view_message(self):
-        self.client.login(
-            username="recipientuser",
-            password="testpassword123",
-        )
+        self.client.force_login(self.recipient)
+        
 
         response = self.client.get(
             reverse("message_detail", args=[self.message.pk])
@@ -89,10 +87,7 @@ class InboxViewTests(TestCase):
         )
 
     def test_viewing_message_marks_it_as_read(self):
-        self.client.login(
-            username="recipientuser",
-            password="testpassword123",
-        )
+        self.client.force_login(self.recipient)
 
         self.client.get(
             reverse("message_detail", args=[self.message.pk])
@@ -102,11 +97,8 @@ class InboxViewTests(TestCase):
         self.assertTrue(self.message.is_read)
 
 
-    def test_outseider_cannot_view_message(self):
-        self.client.login(
-            username="outsider",
-            password="testpassword123",
-        )
+    def test_outsider_cannot_view_message(self):
+        self.client.force_login(self.outsider)
 
         response = self.client.get(
             reverse("message_detail", args=[self.message.pk])
@@ -117,11 +109,7 @@ class InboxViewTests(TestCase):
 
 
     def test_user_can_send_message(self):
-        self.client.login(
-            username="senduser",
-            password="testpassword123",
-        )
-
+        self.client.force_login(self.sender)
 
         response = self.client.post(
          reverse("compose_message"),
