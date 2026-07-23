@@ -1,5 +1,6 @@
 from datetime import date
-from djano.contrib.auth.models import User
+
+from django.contrib.auth.models import User
 from django.test import TestCase 
 
 from .models import Category, Project
@@ -7,8 +8,8 @@ from .models import Category, Project
 
 class ProjectModelTests(TestCase):
 
-    @class method
-    def serUpTestData(cls):
+    @classmethod
+    def setUpTestData(cls):
         cls.user = User.objects.create(
             username="testuser",
             password="testpassword123",
@@ -19,7 +20,7 @@ class ProjectModelTests(TestCase):
     )
 
 
-cls.project = Project.objects.create(
+    cls.project = Project.objects.create(
          owner=cls.user,
             name="Test Project",
             description="This is a test project.",
@@ -30,3 +31,14 @@ cls.project = Project.objects.create(
             category=cls.category,
 
 )
+
+    def test_project_content(self):
+        project = Project.objects.get(pk=self.project.pk)
+        self.assertEqual(project.owner.username, "testuser")
+        self.assertEqual(project.name, "Test Project")
+        self.assertEqual(project.status, "planning")
+        self.assertEqual(project.category,name, "Web Development")
+
+    def test_project_str_method(self):
+        self.assertEqual(str(self.project), "Test Project")
+        self.assertEqual(str(self.category), "Web Development")
