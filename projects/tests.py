@@ -88,10 +88,25 @@ class ProjectFormTests(TestCase):
                 form.non_field_errors(),
         )
 
+
+@override_settings(
+     STORAGES={
+          "staticfiles":{
+               "BACKEND":"django.contrib.staticfiles.storage.StaticFilesStorage",
+          }
+     }
+)
+
+
 class ProjectViewTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username="projectowner",
+            password="testpassword123",
+        )
+
+        self.other_user = User.objects.create_user(
+            username="otheruser",
             password="testpassword123",
         )
 
@@ -136,6 +151,7 @@ class ProjectViewTests(TestCase):
             username="projectowner",
             password="testpassword123",
         )
+        
 
         response = self.client.get(
             reverse("project_detail", args=[self.project.pk])
@@ -147,5 +163,16 @@ class ProjectViewTests(TestCase):
             response,
             "projects/project_detail.html",
         )
+
+def test_other_user_cannot_view_project(self):
+        self.client.login(
+        username="otheruser",
+        password="testpassword123",
+    )
+
+        response = self.client.get(
+        reverse("project_detail", args=[self.project.pk])
+    )
+
+        self.assertEqual(response.status_code, 404)
      
-   
