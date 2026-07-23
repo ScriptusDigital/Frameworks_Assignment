@@ -37,7 +37,7 @@ class UserViewTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username="profileuser",
-            email="old@example,com",
+            email="old@example.com",
             password="A7!qZ9@kLm2#Vp8$",
         )
 
@@ -60,7 +60,7 @@ class UserViewTests(TestCase):
 
         self.assertEqual(response.status_code, 302)
 
-        user = User.objects.get(username="registereduser")
+        user = User.objects.get(username="newuser")
 
         self.assertTrue(
             Profile.objects.filter(user=user).exists()
