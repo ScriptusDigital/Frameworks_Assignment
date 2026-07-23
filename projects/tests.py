@@ -4,9 +4,29 @@ from django.contrib.auth.models import User
 from django.test import TestCase 
 
 from .models import Category, Project
+from .forms import ProjectForm
 
 
 class ProjectModelTests(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.category = Category.objects.crate(
+            name="Software",
+        )
+
+    def test_project_form_with_valid_data(self):
+        form = ProjectForm(
+            data={
+                "name": "Valid Project",
+                "description": "A valid project description.",
+                "start_date": "2026-07-01",
+                "end_date": "2026-08-01",
+                "stakeholders": "Project team",
+                "status": "active",
+                "category": self.category.pk,
+            }
+        )
 
     @classmethod
     def setUpTestData(cls):
