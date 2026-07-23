@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.decorators.http import require_POST
 
 from .forms import MessageForm
 from .models import Message
@@ -37,7 +38,9 @@ def archived_messages(request):
 
 #Unarchiving messages
 
-def unarchive_message(request,pk):
+@login_required
+@require_POST
+def unarchive_message(request, pk):
     message = get_object_or_404(
         Message,
         pk=pk,
