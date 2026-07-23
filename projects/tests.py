@@ -164,14 +164,14 @@ class ProjectViewTests(TestCase):
             "projects/project_detail.html",
         )
 
-def test_other_user_cannot_view_project(self):
+    def test_other_user_cannot_view_project(self):
         self.client.login(
-        username="otheruser",
-        password="testpassword123",
+         username="otheruser",
+            password="testpassword123",
     )
 
         response = self.client.get(
-        reverse("project_detail", args=[self.project.pk])
+            reverse("project_detail", args=[self.project.pk])
     )
 
         self.assertEqual(response.status_code, 404)
