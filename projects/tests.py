@@ -1,7 +1,7 @@
 from datetime import date
 
 from django.contrib.auth.models import User
-from django.test import TestCase 
+from django.test import TestCase, override_settings
 
 from .forms import ProjectForm
 from .models import Category, Project
@@ -87,7 +87,65 @@ class ProjectFormTests(TestCase):
             "Deadline must be on or after the start date.",
                 form.non_field_errors(),
         )
-        
+
 class ProjectViewTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="projectowner",
+            password="testpassword123",
+        )
+
+        self.category = Category.objects.create(
+            name="Business",
+        )
+
+        self.project = Project.objects.create(
+            owner=self.user,
+            name="View Test Project",
+            description="Testing project views.",
+            start_date=date(2026, 7, 1),
+            end_date=date(2026, 8, 1),
+            stakeholders="Test team",
+            status="active",
+            category=self.category,
+        )
+
+    def test_project_list_requires_login(self):
+        response = self.client.get(reverse("project_list"))
+
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(reverse("login"), response.url)
+
+    def test_project_list_view(self):
+        self.client.login(
+            username="projectowner",
+            password="testpassword123",
+        )
+
+        response = self.client.get(reverse("project_list"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "View Test Project")
+        self.assertTemplateUsed(
+            response,
+            "projects/project_list.html",
+        )
+
+    def test_project_detail_view(self):
+        self.client.login(
+            username="projectowner",
+            password="testpassword123",
+        )
+
+        response = self.client.get(
+            reverse("project_detail", args=[self.project.pk])
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "View Test Project")
+        self.assertTemplateUsed(
+            response,
+            "projects/project_detail.html",
+        )
      
    
