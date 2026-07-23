@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<!---Dashboard heading---->
+<!--Dashboard heading-->
 <div class="mb-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-2">
     <div>
     <h1 class="mb-1">Dashboard</h1>
@@ -20,7 +20,7 @@
 </div>
 </div>
 
-<!---Dashboard stats---->
+<!--Dashboard stats-->
 <div class="row g-3 mb-4">
     <div class="col-sm-6 col-lg-3">
         <div class="card shadow-sm h-100">
@@ -65,9 +65,9 @@
     </div>
 </div>
 
-<!----Project Deadline info rows-->
+<!--Project Deadline info rows-->
 <div class="row g-3 mb-4">
-<!-----Next project deadline/end date-->
+<!--Next project deadline/end date-->
 
 <div class="col-lg-6">
 <div class="card shadow-sm border-primary h-100">
@@ -116,11 +116,12 @@
         
         <div class="text-center mt-5">
         
-            <a href="{% url 'project_detail' next_project.pk %}" class="btn btn-primary px-5">
+            <a href="{% url 'project_detail' next_project.pk %}" 
+            class="btn btn-primary px-5">
             View Project
             </a>
+            </div>
         </div>
-
 
     {% else %}
 
@@ -131,10 +132,9 @@
         {% endif %}
 
             </div>
-        </div>
     </div>
 </div>
-<!----Overdue projects-->
+<!--Overdue projects-->
 <div class="col-lg-6">
     <div class="card shadow-sm border-danger h-100">
         <div class="card-body p-4">
@@ -173,7 +173,6 @@
 
             <div class="mt-auto pt-3">
         
-     
 
                <a href="{% url 'project_detail' project.pk %}" class="btn btn-outline-danger">
                 View
@@ -199,14 +198,14 @@
        </div>
     </div>
 </div>
-<!----Main app sections-->
+<!--Main app sections-->
 
 
 <div class="row g-3">
     <div class="col-md-4">
         <div class="card shadow-sm h-100">
             <div class="card-body d-flex flex-column">
-                <h5>Projects</h5>
+                <h2 class="h5">Projects</h2>
                 <p class="text-muted flex-grow-1">
                     Create, update, and manage project records.
                 </p>
@@ -221,7 +220,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm h-100">
                 <div class="card-body d-flex flex-column">
-                    <h5>Inbox</h5>
+                   <h2 class="h5">Inbox</h2>
                     <p class="text-muted flex-grow-1">
                         Send, receive and archive messages.
                     </p>
@@ -236,7 +235,7 @@
                 <div class="col-md-4">
                     <div class="card shadow-sm h-100 d-flex flex-column">
                         <div class="card-body d-flex flex-column">
-                            <h5>Profile</h5>
+                        <h2 class="h5">Profile</h2>
                             <p class="text-muted flex-grow-1">
                                 Update your personal and contact details.
                             </p>

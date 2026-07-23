@@ -80,7 +80,7 @@ class InboxViewTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Project Update")
+        self.assertContains(response, "Project Testing Script")
         self.assertTemplateUsed(
             response,
             "inbox/message_detail.html",
