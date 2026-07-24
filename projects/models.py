@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-class Category(models.Model):
     # Allows projects to be organised by category - these are stored as separate model rather than hard-coded so admins can manage viewable categories through the admin panel.
+class Category(models.Model):
+    """Store administrator-managed categories used to organise projects."""
+
     name = models.CharField(max_length=100, unique=True)
 
 
@@ -14,8 +16,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-# Captured data for each project
+# Captured data for each project and associate with owner and category
 class Project(models.Model):
+    """Store a project and associate it with its owner and category."""
 
     # Status choices for the project
     STATUS_CHOICES = [

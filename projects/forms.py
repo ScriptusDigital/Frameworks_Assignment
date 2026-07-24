@@ -2,9 +2,9 @@ from django import forms
 from .models import Project, Category
 
 
+#Collect and validate project details
 class ProjectForm(forms.ModelForm):
-
-#Prefill on category field
+    """Collect and validate project details."""
 
     category = forms.ModelChoiceField(
         queryset=Category.objects.all(),
@@ -35,9 +35,10 @@ class ProjectForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-select'}),
         }
 
-#Making sure end date is not before start date
+#Ensuring project deadline is not before start date
 
     def clean(self):
+        """Ensure that the project deadline is not before its start date."""
         cleaned_data = super().clean()
         start_date = cleaned_data.get('start_date')
         end_date = cleaned_data.get('end_date')

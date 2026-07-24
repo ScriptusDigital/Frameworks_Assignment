@@ -4,6 +4,7 @@ from .models import Message
 
 #Form for messages
 class MessageForm(forms.ModelForm):
+    """Collect a message recipient, subject and body."""
     recipient = forms.ModelChoiceField(
         queryset=Message._meta.get_field("recipient").remote_field.model.objects.all(),
         empty_label="Choose a recipient",
@@ -34,6 +35,7 @@ class MessageForm(forms.ModelForm):
 
         }
     def clean_subject(self):
+        """Trim the subject and require at least three characters."""
         subject = self.cleaned_data.get("subject", "").strip()
 
         if len(subject) < 3:
