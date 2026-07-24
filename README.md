@@ -40,7 +40,7 @@ Form validation prohibits a project deadline from being set before the start dat
 ### Project categories
 Project categories are stored in a separate 'Category' model and linked to projects through a foreign key. Categories can therefore be managed by an administrator rather than being hard-coded into the application. 
 
-If a category is deleted, its project remain in the database because the relationship uses 'SET_Null'.
+If a category is deleted, its project remain in the database because the relationship uses 'SET_NULL'.
 
 ### Internal user messaging 
 Registered users can send messages to other app users. The messaging system includes:
@@ -71,3 +71,28 @@ ProjectPilot includes three application roles:
 | User | Can access only their own projects |
 |Project Manage | Can access and edit all projects |
 | Administrator | Can access and edit all projects |
+
+Admins assign roles through the Django admin panel. Managers and admins can view, update and delete projects belonging to other users. Ordinary users remain restricted to their own records. 
+
+### Password reset
+ProjectPilot uses Django's built-in password-reset workflow. Users can request a password reset using the email address associated with their account. Rest emails are sent through Gmail SMTP. Email credentials are stored in environment variables and not committed to the Github repo.
+
+### JavaScript features
+JavaScript is used to improve interactioins without replacing Django's server-sde validation. It provides:
+- Live character count while writing a message
+- Confirmation prompts for important actions
+- Support for Bootstrap's responsive navigation
+
+## Database
+The application uses PostgreSQL hosted on Neon and accessed through Django's ORM. 
+The main models are:
+- Django 'User'
+- 'Profile'
+- 'Project'
+- 'Category'
+- 'Message'
+
+## Database schema
+![ProjectPilot database schema](static/images/ProjectPilot_Schema.png)
+
+## Design and Structure
