@@ -23,6 +23,7 @@ main {
 .site-footer .container {
     text-align: center;
 }
+
 /* Navbar  */
 .btn-link.nav-link {
     color: rgba(225, 225, 225, 0.55);
@@ -35,7 +36,7 @@ main {
 }
 
 .navbar-brand {
-    letter-spacing: 0.02.em;
+    letter-spacing: 0.02em;
 
 }
 
