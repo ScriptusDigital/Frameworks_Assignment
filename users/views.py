@@ -16,7 +16,7 @@ from .models import Profile
 #Dashboard fetches for projects and message displays
 @login_required
 def dashboard(request):
-
+    """Display project deadlines and activity totals for the logged-in user."""
     user_projects = Project.objects.filter(owner=request.user)
     received_messages = Message.objects.filter(recipient=request.user)
 
@@ -55,6 +55,7 @@ def dashboard(request):
 #User creation logic 
 
 def register(request):
+    """Create a user account and its associated profile."""
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
@@ -71,7 +72,7 @@ def register(request):
 #Logic for Profile view page updating
 @login_required
 def profile(request):
-
+    """Display and process the logged-in user's account and profile forms."""
     profile_obj, created = Profile.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
