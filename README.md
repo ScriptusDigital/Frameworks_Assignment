@@ -36,3 +36,38 @@ Users can create, view, edit and delete projects. Each project stores
 - Creation date 
 
 Form validation prohibits a project deadline from being set before the start date. 
+
+### Project categories
+Project categories are stored in a separate 'Category' model and linked to projects through a foreign key. Categories can therefore be managed by an administrator rather than being hard-coded into the application. 
+
+If a category is deleted, its project remain in the database because the relationship uses 'SET_Null'.
+
+### Internal user messaging 
+Registered users can send messages to other app users. The messaging system includes:
+- Inbox
+- Sent messages 
+- Read and unread status
+- Message detail view
+- Reply and forwarding support
+- Message arching
+- Message restoration
+
+The reply function reuses the existing compose-message form. It pre-fills the original sender as the recipient, add 'Re:' to the subject and quotes the original message. The recipient can be changed, allowing the workflow to forward the message. 
+
+Achiving and restoration use POST requests with CSRF protection. Users can only archive or restore messages for which they are the recipient. 
+
+### User profiles
+Each user havs a linked profile which includes
+- Phone number
+- Department
+- Role in the organization
+
+Users can update their own person and contact details. Email validation prevents a profile from being chaged to an address already used by another account. 
+
+### Roles and permissions
+ProjectPilot includes three application roles:
+|Role | Project access |
+|---|---|
+| User | Can access only their own projects |
+|Project Manage | Can access and edit all projects |
+| Administrator | Can access and edit all projects |
