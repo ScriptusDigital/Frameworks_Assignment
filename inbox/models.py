@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 #Storing messages sent between users
 class Message(models.Model):
-
+    """Store an internal message exchanged between two registered users."""
     sender = models.ForeignKey(
         User, 
         on_delete=models.CASCADE,

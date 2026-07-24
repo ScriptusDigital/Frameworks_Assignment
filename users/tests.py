@@ -10,7 +10,7 @@ from .models import Profile
 
 
 class UserFormTest(TestCase):
-
+    """Tests for the user registration form."""
     def test_registration_form_with_valid_data(self):
         form = UserRegisterForm(
             data={
@@ -33,7 +33,7 @@ class UserFormTest(TestCase):
 )
 
 class UserViewTests(TestCase):
-
+    """Tests for registration, profiles and login protection."""
     def setUp(self):
         self.user = User.objects.create_user(
             username="profileuser",

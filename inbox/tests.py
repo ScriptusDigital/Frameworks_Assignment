@@ -6,6 +6,7 @@ from .models import Message
 
 # Create your tests here.
 class MessageModelTests(TestCase):
+    """Tests for the Message model and its default values."""
 
     @classmethod
     def setUpTestData(cls):
@@ -48,6 +49,7 @@ class MessageModelTests(TestCase):
 )
 
 class InboxViewTests(TestCase):
+    """Tests for sending, reading and accessing messages."""
     def setUp(self):
         self.sender = User.objects.create_user(
             username="senderuser",

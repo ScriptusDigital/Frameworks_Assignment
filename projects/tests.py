@@ -10,6 +10,7 @@ from django.urls import reverse
 
 
 class ProjectModelTests(TestCase):
+    """Tests for the Project and Category models."""
 
     @classmethod
     def setUpTestData(cls):
@@ -47,7 +48,7 @@ class ProjectModelTests(TestCase):
             self.assertEqual(str(self.category), "Web Development")
 
 class ProjectFormTests(TestCase):
-
+    """Tests for valid project forms and project date validation."""
     @classmethod
     def setUpTestData(cls):
         cls.category = Category.objects.create(
@@ -99,6 +100,7 @@ class ProjectFormTests(TestCase):
 
 
 class ProjectViewTests(TestCase):
+    """Tests for project pages, login requirements and project ownership."""
     def setUp(self):
         self.user = User.objects.create_user(
             username="projectowner",

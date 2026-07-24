@@ -14,9 +14,11 @@ ROLE_CHOICES = [
 
 ]
 
-class Profile(models.Model):
-# Based on walkthrough https://www.crunchydata.com/blog/extending-djangos-user-model-with-onetoonefield 
+# Store user details and app roles for Django user   
+# Based on class notes and walkthroughs at https://www.crunchydata.com/blog/extending-djangos-user-model-with-onetoonefield 
 # and https://docs.djangoproject.com/en/6.0/topics/db/examples/one_to_one/#
+class Profile(models.Model):
+    """Store contact details and an application role for a Django user."""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=30, blank=True)
     department = models.CharField(max_length=100, blank=True)

@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 
 from .models import Profile
 
-#User Registration  
+#User Registration and validation
 class UserRegisterForm(UserCreationForm):
+    """Collect registration details using Django's user-creation validation."""
     username = forms.CharField(
         label='Username',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your username'})
@@ -33,6 +34,7 @@ class UserRegisterForm(UserCreationForm):
 #Widgets defining how form fields rendered in HTML bootstrap
 
 class UserUpdateForm(forms.ModelForm):
+    """Allow a user to update their personal details and email address."""
     email = forms.EmailField(  
         required=True,
         widget=forms.EmailInput(attrs={"class": "form-control"})
@@ -49,9 +51,10 @@ class UserUpdateForm(forms.ModelForm):
 
         }
 
-#Ensuring emails are unique
+#Ensuring emails are unique, rejects email addresses already assigned to another user
 
     def clean_email(self):
+        """Reject email addresses already assigned to another user."""
         email= self.cleaned_data["email"]
 
         if (User.objects
@@ -65,9 +68,10 @@ class UserUpdateForm(forms.ModelForm):
 
         return email
 
-#Additional profile info form
+#Additional profile info form, allows the user to update their phone number and department.
 
 class ProfileUpdateForm(forms.ModelForm):
+    """Allow a user to update their phone number and department."""
     class Meta: 
         model= Profile
         fields = ["phone", "department"]
