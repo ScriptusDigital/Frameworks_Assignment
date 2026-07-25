@@ -133,4 +133,59 @@ Valdiation includes:
 - Project deadline validation
 - Miniumum message-subject length
 
-POST forms include CSRF tokens, and state-changing actions such as deletion, archiving, restoration and logout use POST requests
+POST forms include CSRF tokens, and state-changing actions such as deletion, archiving, restoration and logout use POST requests.
+
+### Authorization
+
+Project querysets are filtered according to the authenticated user and their role. Ordinary users receive only their own projects, while project managers and administrators can work across all project records. 
+
+Message detail, archive and restore operations also check that the requesting user is a participant in, or recipient of a relevant message.
+
+## Automated testing
+
+To test the build, automated tests were used across 18 instances for the three application areas:
+- Project model content and string representation
+- Project form validation
+- Project list and detail views
+- Login requirements and project ownership
+- Message mode content and defaults
+- Sending and viewing messages
+- Read-status updates
+- Message privacy
+- User registration form validation
+- User and profile creation
+- Password hashing
+- Profile login protection
+- Profile updates
+
+## User roles and features
+### Unregistered users
+Unregistrered users can: 
+- Register an account
+- Access log in screen
+- Request a password reset
+
+### Standard users
+Authenticated userd with the standard `user` role can:
+- Access a personal dashboard
+- Create projects
+- View, update and delete their own projects
+- Send messages to other users
+- View inbox and sent messages
+- Reply to or forward messages
+- Archive and restore received messages
+- Update their personal and contact details
+
+### Project managers
+
+Users assigned to the `project manager` role  can:
+- Access all statndard account and messaging features
+- View projects belonging to every user
+- Update projects belonging to every user
+- Delete projects belonging to every user
+
+### Administrators
+
+Users assigned to the `admin` role can access all projects in the same way as a project manager. Authorized Django admin users can also access the admin panel to manage users, profiles, roles, categories, projects and messages. 
+
+
