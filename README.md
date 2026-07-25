@@ -23,7 +23,7 @@ The project demonstrates core Django ideas including:
 ### User registration and authentication
 Users can register with a username, email address and password. Passwords are securely hashed using Django's built-in authentication system rather than being stored as plain text. Users can log in and out, while protected views redirect unauthenticated visitors to the login page. 
 
-### Project management funtion
+### Project management function
 Users can create, view, edit and delete projects. Each project stores
 - Project name
 - Description
@@ -96,3 +96,41 @@ The main models are:
 ![ProjectPilot database schema](static/images/ProjectPilot_Schema.png)
 
 ## Design and Structure
+
+### Application structure
+The project is divided into three Django applications:
+- `users` handles registration, profiles and account-related views.
+- `projects` handles project records, categories and role-based project access.
+- `inbox` handles internal messages, replies, archiving and restoration.
+
+This modular structure keeps the models, forms, views, URLs and tests grouped and feature and allows the application to be extended later. 
+
+### Template structure
+The project uses a main `templates` directory with feature-specific subdirectories for users, projects and inbox pages. 
+
+The shared `base.html` template provides the common navigation, messages, footer, stylesheets and scripts. Other templates extend this base so the layout remains consistent without repeating the complete page structure. 
+
+### Responsive interview
+
+Bootstrap is used for the grid system, navigation, cards, forms, buttons, tables and responsive layouts. Wider layouts use columns when needed, while stacking it on smaller screens. Custom styles are stored separately in `static/css/style.css` and JavaScript in `static/js/main.js` 
+
+## Development Process
+
+### Planning the data models
+
+A significang part of the dev. process was deciding the required fields and relationships before building the pages. 
+
+The User, Profile, Project, Category and Messages relationships had to be planned in advance so that forms, views and templates could use a consistent structure. This required more initial planning that in previous assessments which I approached in a more iterative (chaotic) manner. Ultimately, this made the later HTML and template building work more straightforward. 
+
+### Django forms and validation
+
+Django  forms are used to manage registration, profile updates, project records and messages. 
+
+Valdiation includes:
+- Django's built-in password validation
+- Required registration email addresses
+- Unique email validation during prfile updates
+- Project deadline validation
+- Miniumum message-subject length
+
+POST forms include CSRF tokens, and state-changing actions such as deletion, archiving, restoration and logout use POST requests
