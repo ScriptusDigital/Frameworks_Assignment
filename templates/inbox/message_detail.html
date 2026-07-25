@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!----Condition for if message has been archived or not-->
+<!--Condition for if message has been archived or not-->
 <div class="mb-2">
 {% if message.is_archived %}
  <a href="{% url 'archived_messages' %}" class="text-decoration-none">&larr; Back to Archive
     </a>
 {% else %}
-    <!----If not archived-->
+    <!--If not archived-->
     <a href="{% url 'inbox' %}" class="text-decoration-none">&larr; Back to Inbox
     </a>
     {% endif%}
@@ -26,7 +26,7 @@
 
         <hr>
 
-        <p>{{ message.body|linebreaks }} </p>
+        <div>{{ message.body|linebreaks }} </div>
 
         {% if message.recipient == user and not message.is_archived %}
         <form method="post" action="{% url 'archive_message' message.pk %}">

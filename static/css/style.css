@@ -81,9 +81,14 @@ main {
 }
 
 
-
 /* Table for projects area  */
 
 .table {
     margin-bottom: 0;
+}
+
+/* Message avatar  */
+.message-avatar {
+    width: 42px;
+    height: 42px;
 }

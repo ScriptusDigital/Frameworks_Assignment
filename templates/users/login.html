@@ -27,8 +27,7 @@
                             Username
                         </label>
 
-                        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}"
-                            class="form-control" required>
+                        <input type="text" name="{{ form.username.name }}" id="{{ form.username.id_for_label }}" class="form-control" autocomplete="username" required>
 
                         {% if form.username.errors %}
                         <div class="text-danger small mt-1">
@@ -42,8 +41,8 @@
                             Password
                         </label>
 
-                        <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}"
-                        class="form-control" required>
+                        <input type="password" name="{{ form.password.name }}" id="{{ form.password.id_for_label }}" 
+                        class="form-control" autocomplete="current-password" required>
 
                         {% if form.password.errors %}
                         <div class="text-danger small mt-1">
