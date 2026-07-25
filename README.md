@@ -1,8 +1,8 @@
 # ProjectPilot
 ## Project Description
-ProjectPilot is a Djando-based project management web application designed to help individuals and teams organise projects, maintain project information and communicated through an internal messaging system. 
+ProjectPilot is a Django-based project management web application designed to help individuals and teams organise projects, maintain project information and communicate through an internal messaging system. 
 
-Users cn register an account, maintain a personal profile, create and categorise projects, exhange messages with other users and monitor activity through a central dashboard. 
+Users can register an account, maintain a personal profile, create and categorise projects, exchange messages with other users and monitor activity through a central dashboard. 
 
 The project demonstrates core Django ideas including:
 - PostgreSQL database integration
@@ -27,7 +27,7 @@ Users can register with a username, email address and password. Passwords are se
 Users can create, view, edit and delete projects. Each project stores
 - Project name
 - Description
-- State data
+- Start date
 - End date/Deadline
 - Status
 - Category
@@ -40,7 +40,7 @@ Form validation prohibits a project deadline from being set before the start dat
 ### Project categories
 Project categories are stored in a separate 'Category' model and linked to projects through a foreign key. Categories can therefore be managed by an administrator rather than being hard-coded into the application. 
 
-If a category is deleted, its project remain in the database because the relationship uses 'SET_NULL'.
+If a category is deleted, its projects remain in the database because the relationship uses `SET_NULL`.
 
 ### Internal user messaging 
 Registered users can send messages to other app users. The messaging system includes:
@@ -49,36 +49,36 @@ Registered users can send messages to other app users. The messaging system incl
 - Read and unread status
 - Message detail view
 - Reply and forwarding support
-- Message arching
+- Message archiving
 - Message restoration
 
-The reply function reuses the existing compose-message form. It pre-fills the original sender as the recipient, add 'Re:' to the subject and quotes the original message. The recipient can be changed, allowing the workflow to forward the message. 
+The reply function reuses the existing compose-message form. It pre-fills the original sender as the recipient, adds `Re:` to the subject and quotes the original message. The recipient can be changed, allowing the workflow to forward the message. 
 
-Achiving and restoration use POST requests with CSRF protection. Users can only archive or restore messages for which they are the recipient. 
+Archiving and restoration use POST requests with CSRF protection. Users can only archive or restore messages for which they are the recipient. 
 
 ### User profiles
-Each user havs a linked profile which includes
+Each user has a linked profile which includes
 - Phone number
 - Department
 - Role in the organization
 
-Users can update their own person and contact details. Email validation prevents a profile from being chaged to an address already used by another account. 
+Users can update their own personal and contact details. Email validation prevents a profile from being changed to an address already used by another account. 
 
 ### Roles and permissions
 ProjectPilot includes three application roles:
 |Role | Project access |
 |---|---|
 | User | Can access only their own projects |
-|Project Manage | Can access and edit all projects |
+|Project Manager | Can access and edit all projects |
 | Administrator | Can access and edit all projects |
 
 Admins assign roles through the Django admin panel. Managers and admins can view, update and delete projects belonging to other users. Ordinary users remain restricted to their own records. 
 
 ### Password reset
-ProjectPilot uses Django's built-in password-reset workflow. Users can request a password reset using the email address associated with their account. Rest emails are sent through Gmail SMTP. Email credentials are stored in environment variables and not committed to the Github repo.
+ProjectPilot uses Django's built-in password-reset workflow. Users can request a password reset using the email address associated with their account. Reset emails are sent through Gmail SMTP. Email credentials are stored in environment variables and not committed to the Github repo.
 
 ### JavaScript features
-JavaScript is used to improve interactioins without replacing Django's server-sde validation. It provides:
+JavaScript is used to improve interactions without replacing Django's server-side validation. It provides:
 - Live character count while writing a message
 - Confirmation prompts for important actions
 - Support for Bootstrap's responsive navigation
@@ -110,7 +110,7 @@ The project uses a main `templates` directory with feature-specific subdirectori
 
 The shared `base.html` template provides the common navigation, messages, footer, stylesheets and scripts. Other templates extend this base so the layout remains consistent without repeating the complete page structure. 
 
-### Responsive interview
+### Responsive interface
 
 Bootstrap is used for the grid system, navigation, cards, forms, buttons, tables and responsive layouts. Wider layouts use columns when needed, while stacking it on smaller screens. Custom styles are stored separately in `static/css/style.css` and JavaScript in `static/js/main.js` 
 
@@ -118,7 +118,7 @@ Bootstrap is used for the grid system, navigation, cards, forms, buttons, tables
 
 ### Planning the data models
 
-A significang part of the dev. process was deciding the required fields and relationships before building the pages. 
+A significant part of the dev. process was deciding the required fields and relationships before building the pages. 
 
 The User, Profile, Project, Category and Messages relationships had to be planned in advance so that forms, views and templates could use a consistent structure. This required more initial planning that in previous assessments which I approached in a more iterative (chaotic) manner. Ultimately, this made the later HTML and template building work more straightforward. 
 
@@ -126,12 +126,12 @@ The User, Profile, Project, Category and Messages relationships had to be planne
 
 Django  forms are used to manage registration, profile updates, project records and messages. 
 
-Valdiation includes:
+Validation includes:
 - Django's built-in password validation
 - Required registration email addresses
-- Unique email validation during prfile updates
+- Unique email validation during profile updates
 - Project deadline validation
-- Miniumum message-subject length
+- Minimum message-subject length
 
 POST forms include CSRF tokens, and state-changing actions such as deletion, archiving, restoration and logout use POST requests.
 
@@ -143,12 +143,12 @@ Message detail, archive and restore operations also check that the requesting us
 
 ## Automated testing
 
-To test the build, automated tests were used across 18 instances for the three application areas:
+ProjectPilot containts 18 automated tests across it's three application areas. 
 - Project model content and string representation
 - Project form validation
 - Project list and detail views
 - Login requirements and project ownership
-- Message mode content and defaults
+- Message model content and defaults
 - Sending and viewing messages
 - Read-status updates
 - Message privacy
@@ -158,15 +158,19 @@ To test the build, automated tests were used across 18 instances for the three a
 - Profile login protection
 - Profile updates
 
+The complete test suite can be run with:
+`python manage.py test --keepdb`
+At the time of submission, all 18 automated tests pass successfully.
+
 ## User roles and features
 ### Unregistered users
-Unregistrered users can: 
+Unregistered users can: 
 - Register an account
 - Access log in screen
 - Request a password reset
 
 ### Standard users
-Authenticated userd with the standard `user` role can:
+Authenticated users with the standard `user` role can:
 - Access a personal dashboard
 - Create projects
 - View, update and delete their own projects
@@ -179,7 +183,7 @@ Authenticated userd with the standard `user` role can:
 ### Project managers
 
 Users assigned to the `project manager` role  can:
-- Access all statndard account and messaging features
+- Access all standard account and messaging features
 - View projects belonging to every user
 - Update projects belonging to every user
 - Delete projects belonging to every user
@@ -230,7 +234,7 @@ Users assigned to the `admin` role can access all projects in the same way as a 
 ## Technologies Used
 - Python
 - Django
-- PoestgreSQL
+- PostgreSQL
 - Neon
 - HTML5
 - CSS
@@ -244,7 +248,7 @@ Users assigned to the `admin` role can access all projects in the same way as a 
 ## External Resources Used
 
 
-The following recources were used to review and verify features that went beyond the main course material.
+The following resources were used to review and verify features that went beyond the main course material.
 
 ### Internal Messaging 
 
@@ -267,10 +271,10 @@ Django authentication and filtered QuerySets were used to control access to proj
 ### Categories and Administration
 Project categories are stored in a separate model and connected to projects through a many to one relationship. Categories are created and managed by admin users in the Django admin panel.
 
-- [Djando administration](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/)
+- [Django administration](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/)
 
 ### Dashboard Queries
-The dashboard uses Django QuerySets to filter, counter and order project and message records. 
+The dashboard uses Django QuerySets to filter, count and order project and message records. 
 
 - [Django aggregation](https://docs.djangoproject.com/en/5.2/topics/db/aggregation/)
 
@@ -278,28 +282,29 @@ The dashboard uses Django QuerySets to filter, counter and order project and mes
 - ‘PPfavicon.jpg’ generated in ChatGPT
 
 
-## Deployed site
-This project is available at: 
-[GitHub Repository](https://github.com/ScriptusDigital/Frameworks_Assignment)
+## GitHub Repository
+This project source code is available at: 
+[ProjectPilot GitHub Repository](https://github.com/ScriptusDigital/Frameworks_Assignment)
 
 ## Deployment
 
-ProjectPilot is deployed on Render using the linked GitHub repository and a PostgreSQL database hosted ny Neon. The application reads config values such as `SECRET_KEY` and `DATABASE_URL`
-from environment variables, which can be set through the Render dashboard. The live deployed version is available through the link below. 
-
-The password reset email function is configured though `EMAIL_USER` and `EMAIL_PASS` variables.
+ProjectPilot is deployed on Render using the linked GitHub repository and a PostgreSQL database hosted by Neon. Config values are provided through environment variables in the Render dashboard.
 
 ### Render Deployment process
-1. Pushed completed project to GitHub
-2. Create new webserive on Render and ceoonect the GitHub repo. 
-3. Set build command to: ```text ./build.sh
-4. Set start command to: gunicorn projectpilot.wsgi
+1. Push completed project to GitHub
+2. Create new webservice on Render and connect the GitHub repo. 
+3. Set build command to: 
+./build.sh
+4. Set start command to: 
+gunicorn projectpilot.wsgi
 5. Add required environment variable in Render dashboard:
 SECRET_KEY
 DATABASE_URL
 EMAIL_USER
 EMAIL_PASS
+DEBUG=False
 6. Deploy the web service and verify build completed. 
+7. Open the application and test its main functionality.
 
 Sensitive values are stored as environment variable and not committed to the GitHub repo. 
 
