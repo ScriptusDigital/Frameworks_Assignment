@@ -75,7 +75,9 @@ ProjectPilot includes three application roles:
 Admins assign roles through the Django admin panel. Managers and admins can view, update and delete projects belonging to other users. Ordinary users remain restricted to their own records. 
 
 ### Password reset
-ProjectPilot uses Django's built-in password-reset workflow. Users can request a password reset using the email address associated with their account. Reset emails are sent through Gmail SMTP. Email credentials are stored in environment variables and not committed to the Github repo.
+ProjectPilot uses Django's built-in password-reset workflow. Users can request a password reset using the email address associated with their account.
+
+The reset workflow, secure tokens, forms and password hashing are provided by Django. Reset emails are delivered through Brevo's transactional HTTPS API using Django Anymail. The Brevo API key is stored as an environment variable and is not committed to the GitHub repository.
 
 ### JavaScript features
 JavaScript is used to improve interactions without replacing Django's server-side validation. It provides:
@@ -243,8 +245,7 @@ Users assigned to the `admin` role can access all projects in the same way as a 
 - Whitenoise
 - gunicorn
 - Render
-- Gmail SMTP
-- Brevo Platform
+- Brevo transactional email API
 
 ## External Resources Used
 
@@ -279,6 +280,16 @@ The dashboard uses Django QuerySets to filter, count and order project and messa
 
 - [Django aggregation](https://docs.djangoproject.com/en/5.2/topics/db/aggregation/)
 
+### Password Reset Email Delivery
+The password-reset workflow uses Django's built-in authentication views, forms and secure reset tokens, following the Unit 13 course walkthrough.
+
+The course example delivered reset emails through Gmail SMTP. ProjectPilot uses Brevo's HTTPS transactional-email API in production because Render's free tier blocks outbound SMTP connections. Django Anymail connects Django's standard email system to Brevo without changing the password-reset workflow.
+
+- [Django Anymail documentation](https://anymail.dev/en/stable/index.html)
+
+- [Anymail Brevo configuration](https://anymail.dev/en/stable/esps/brevo/)
+
+
 ### Images and media
 - ‘PPfavicon.jpg’ generated in ChatGPT
 
@@ -301,13 +312,15 @@ gunicorn projectpilot.wsgi
 5. Add required environment variable in Render dashboard:
 SECRET_KEY
 DATABASE_URL
-EMAIL_USER
-EMAIL_PASS
+BREVO_API_KEY
+DEFAULT_FROM_EMAIL
 DEBUG=False
 6. Deploy the web service and verify build completed. 
 7. Open the application and test its main functionality.
 
 Sensitive values are stored as environment variable and not committed to the GitHub repo. 
+
+Brevo is configured to deliver transactional emails through its HTTPS API. This avoids Render's restriction on outbound SMTP connections from free Web Services.
 
 ## Live deployment site
 The application is available at: 
