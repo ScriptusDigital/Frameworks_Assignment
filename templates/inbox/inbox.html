@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<!---Inbox heading--->
+<!--Inbox heading-->
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
     <div>
@@ -14,13 +14,13 @@
     <a href="{% url 'compose_message' %}" class="btn btn-primary">Compose Message</a>
 </div>
 
-<!----Inbox nav-->
+<!--Inbox nav-->
 <div class="d-flex gap-2 mb-3">
     <a href="{% url 'sent_messages' %}" class="btn btn-sm btn-outline-secondary">Sent</a>
     <a href="{% url 'archived_messages' %}" class="btn btn-sm btn-outline-secondary">Archive</a>
 </div>
 
-<!---Message list-->
+<!--Message list-->
 
 <div class="card shadow-sm">
     <div class="list-group list-group-flush">
@@ -29,14 +29,14 @@
         <a href="{% url 'message_detail' message.pk %}" class="list-group-item list-group-item-action py-3">
             <div class="d-flex align-items-start gap-3">
 
-<!---Sender initial-->
+<!--Sender initial-->
 
                 <div class="message-avatar rounded-circle bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0">
 
                     {{message.sender.username|first|upper }}
 
                     </div>
-<!---Message info-->
+<!--Message info-->
 
     <div class="flex-grow-1">
         <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
