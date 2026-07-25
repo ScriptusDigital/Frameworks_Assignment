@@ -188,4 +188,55 @@ Users assigned to the `project manager` role  can:
 
 Users assigned to the `admin` role can access all projects in the same way as a project manager. Authorized Django admin users can also access the admin panel to manage users, profiles, roles, categories, projects and messages. 
 
+## Routes Overview
+
+### Main and account routes
+| Route | Method | Access | Purpose |
+|---|---|---|---|
+| `/` | GET | Login required | Display the personal dashboard |
+| `/admin/` | GET, POST | Django admin | Django administration panel |
+| `/users/register/` | GET, POST | Public | Display and process account registration |
+| `/users/login/` | GET, POST | Public | Authenticate a user |
+| `/users/logout/` | POST | Login required | End the current session |
+| `/users/profile/` | GET, POST | Login required | Display and update personal and contact details |
+| `/password-reset/` | GET, POST | Public | Request a password-reset email |
+| `/password-reset/done/` | GET | Public | Confirm that the reset request was submitted |
+| `/password-reset-confirm/<uidb64>/<token>/` | GET, POST | Reset token required | Validate the token and set a new password |
+| `/password-reset-complete/` | GET | Public | Confirm that the password was changed |
+
+### Project routes
+| Route | Method | Access | Purpose |
+|---|---|---|---|
+| `/projects/` | GET | Login required | List projects available to the current user |
+| `/projects/project/new/` | GET, POST | Login required | Display and process the project creation form |
+| `/projects/project/<pk>/` | GET | Login required and authorized | Display one project |
+| `/projects/project/<pk>/update/` | GET, POST | Login required and authorized | Display and process the project update form |
+| `/projects/project/<pk>/delete/` | GET, POST | Login required and authorized | Display confirmation and delete a project |
+
+### Inbox routes
+
+| Route | Method | Access | Purpose |
+|---|---|---|---|
+| `/inbox/` | GET | Login required | Display received, non-archived messages |
+| `/inbox/compose/` | GET, POST | Login required | Display and process the compose-message form |
+| `/inbox/sent/` | GET | Login required | Display messages sent by the current user |
+| `/inbox/archived/` | GET | Login required | Display archived received messages |
+| `/inbox/<pk>/` | GET | Sender or recipient | Display a message and mark it read for its recipient |
+| `/inbox/<pk>/reply/` | GET, POST | Sender or recipient | Reply to or forward a message using the compose form |
+| `/inbox/<pk>/archive/` | POST | Recipient only | Archive a received message |
+| `/inbox/message/<pk>/unarchive/` | POST | Recipient only | Restore an archived message |
+
+## Deployed site
+This project is available at: 
+[GitHub Repository](https://github.com/ScriptusDigital/Frameworks_Assignment)
+
+## Deployment on Render
+This project is deployed on Render using the linked GitHub repository. The application reads config values such as `SECRET_KEY` and `DATABASE_URL`
+from environment variables, which can be set through the Render dashboard. The live deployed version is available through the link below. 
+
+The password reset email function is configured though EMAIL_USER and EMAIL_PASS variables.
+
+## Live deployment site
+The application is available at: 
+[Live App](https://frameworks-assignment.onrender.com/)
 
