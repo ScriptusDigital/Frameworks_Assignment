@@ -244,6 +244,7 @@ Users assigned to the `admin` role can access all projects in the same way as a 
 - gunicorn
 - Render
 - Gmail SMTP
+- Brevo Platform
 
 ## External Resources Used
 
