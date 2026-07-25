@@ -282,11 +282,26 @@ The dashboard uses Django QuerySets to filter, counter and order project and mes
 This project is available at: 
 [GitHub Repository](https://github.com/ScriptusDigital/Frameworks_Assignment)
 
-## Deployment on Render
-This project is deployed on Render using the linked GitHub repository. The application reads config values such as `SECRET_KEY` and `DATABASE_URL`
+## Deployment
+
+ProjectPilot is deployed on Render using the linked GitHub repository and a PostgreSQL database hosted ny Neon. The application reads config values such as `SECRET_KEY` and `DATABASE_URL`
 from environment variables, which can be set through the Render dashboard. The live deployed version is available through the link below. 
 
-The password reset email function is configured though EMAIL_USER and EMAIL_PASS variables.
+The password reset email function is configured though `EMAIL_USER` and `EMAIL_PASS` variables.
+
+### Render Deployment process
+1. Pushed completed project to GitHub
+2. Create new webserive on Render and ceoonect the GitHub repo. 
+3. Set build command to: ```text ./build.sh
+4. Set start command to: gunicorn projectpilot.wsgi
+5. Add required environment variable in Render dashboard:
+SECRET_KEY
+DATABASE_URL
+EMAIL_USER
+EMAIL_PASS
+6. Deploy the web service and verify build completed. 
+
+Sensitive values are stored as environment variable and not committed to the GitHub repo. 
 
 ## Live deployment site
 The application is available at: 
