@@ -10,13 +10,10 @@ from .models import Project
 # Control for user role to view all projects
 def user_can_view_all_projects(user):
     """Return whether a user may access projects belonging to all users."""
-    if user.has_perm("lass ProjectListView(LoginRequiredMixin, ListView):projects.can_view_all_projects"):
-        return True
-    
-    if hasattr(user, "profile") and user.profile.role in ["manager", "admin"]:
-        return True
-    
-    return False
+    return(
+        hasattr(user, "profile")
+        and user.profile.role in ["manager", "admin"]
+    )
 
 #List view
 class ProjectListView(LoginRequiredMixin, ListView):

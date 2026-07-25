@@ -145,7 +145,7 @@ Message detail, archive and restore operations also check that the requesting us
 
 ## Automated testing
 
-ProjectPilot containts 18 automated tests across it's three application areas. 
+ProjectPilot contains 18 automated tests across it's three application areas. 
 - Project model content and string representation
 - Project form validation
 - Project list and detail views
@@ -318,7 +318,7 @@ DEBUG=False
 6. Deploy the web service and verify build completed. 
 7. Open the application and test its main functionality.
 
-Sensitive values are stored as environment variable and not committed to the GitHub repo. 
+Sensitive values are stored as environment variables and not committed to the GitHub repo. 
 
 Brevo is configured to deliver transactional emails through its HTTPS API. This avoids Render's restriction on outbound SMTP connections from free Web Services.
 
