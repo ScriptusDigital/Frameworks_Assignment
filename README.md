@@ -86,11 +86,11 @@ JavaScript is used to improve interactioins without replacing Django's server-sd
 ## Database
 The application uses PostgreSQL hosted on Neon and accessed through Django's ORM. 
 The main models are:
-- Django 'User'
-- 'Profile'
-- 'Project'
-- 'Category'
-- 'Message'
+- Django `User`
+- `Profile`
+- `Project`
+- `Category`
+- `Message`
 
 ## Database schema
 ![ProjectPilot database schema](static/images/ProjectPilot_Schema.png)
@@ -225,6 +225,58 @@ Users assigned to the `admin` role can access all projects in the same way as a 
 | `/inbox/<pk>/reply/` | GET, POST | Sender or recipient | Reply to or forward a message using the compose form |
 | `/inbox/<pk>/archive/` | POST | Recipient only | Archive a received message |
 | `/inbox/message/<pk>/unarchive/` | POST | Recipient only | Restore an archived message |
+
+
+## Technologies Used
+- Python
+- Django
+- PoestgreSQL
+- Neon
+- HTML5
+- CSS
+- Bootstrap 5
+- JavaScript
+- Whitenoise
+- gunicorn
+- Render
+- Gmail SMTP
+
+## External Resources Used
+
+
+The following recources were used to review and verify features that went beyond the main course material.
+
+### Internal Messaging 
+
+The internal messaging system uses two foreign-key relationships to associate each message with a sender and recipient. Django model fields and QuerySets are also used to manage read, unread, archived and restored message states. 
+
+- [Django many-to-one relationships](https://docs.djangoproject.com/en/5.2/topics/db/examples/many_to_one/)
+
+- [Django model field reference](https://docs.djangoproject.com/en/5.2/ref/models/fields/)
+
+- [Django model forms](https://docs.djangoproject.com/en/5.2/topics/forms/modelforms/)
+
+- [Django database queries](https://docs.djangoproject.com/en/5.2/topics/db/queries/)
+
+### Roles and Project Authorization
+Django authentication and filtered QuerySets were used to control access to project records. ProjectPilot extends this approach with user, project manager and admin roles. 
+
+- [Django authentication and authorization](https://docs.djangoproject.com/en/5.2/topics/auth/default/)
+
+
+### Categories and Administration
+Project categories are stored in a separate model and connected to projects through a many to one relationship. Categories are created and managed by admin users in the Django admin panel.
+
+- [Djando administration](https://docs.djangoproject.com/en/5.2/ref/contrib/admin/)
+
+### Dashboard Queries
+The dashboard uses Django QuerySets to filter, counter and order project and message records. 
+
+- [Django aggregation](https://docs.djangoproject.com/en/5.2/topics/db/aggregation/)
+
+### Images and media
+- ‘PPfavicon.jpg’ generated in ChatGPT
+
 
 ## Deployed site
 This project is available at: 
