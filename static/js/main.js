@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    
 /* Confimation message for buttons */
 const confirmButtons = document.querySelectorAll(".confirm-action")
 ;

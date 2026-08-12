@@ -23,7 +23,7 @@ The project demonstrates core Django ideas including:
 ### User registration and authentication
 Users can register with a username, email address and password. Passwords are securely hashed using Django's built-in authentication system rather than being stored as plain text. Users can log in and out, while protected views redirect unauthenticated visitors to the login page. 
 
-### Project management function
+### Project management functionality
 Users can create, view, edit and delete projects. Each project stores
 - Project name
 - Description
@@ -105,7 +105,7 @@ The project is divided into three Django applications:
 - `projects` handles project records, categories and role-based project access.
 - `inbox` handles internal messages, replies, archiving and restoration.
 
-This modular structure keeps the models, forms, views, URLs and tests grouped and feature and allows the application to be extended later. 
+This modular structure keeps the models, forms, views, URLs and tests grouped by feature and allows the application to be extended later. 
 
 ### Template structure
 The project uses a main `templates` directory with feature-specific subdirectories for users, projects and inbox pages. 
@@ -114,7 +114,7 @@ The shared `base.html` template provides the common navigation, messages, footer
 
 ### Responsive interface
 
-Bootstrap is used for the grid system, navigation, cards, forms, buttons, tables and responsive layouts. Wider layouts use columns when needed, while stacking it on smaller screens. Custom styles are stored separately in `static/css/style.css` and JavaScript in `static/js/main.js` 
+Bootstrap is used for the grid system, navigation, cards, forms, buttons, tables and responsive layouts. Wider layouts use columns when needed, while elements stack on smaller screens. Custom styles are stored separately in `static/css/style.css` and JavaScript in `static/js/main.js`. 
 
 ## Development Process
 
@@ -122,11 +122,11 @@ Bootstrap is used for the grid system, navigation, cards, forms, buttons, tables
 
 A significant part of the dev. process was deciding the required fields and relationships before building the pages. 
 
-The User, Profile, Project, Category and Messages relationships had to be planned in advance so that forms, views and templates could use a consistent structure. This required more initial planning that in previous assessments which I approached in a more iterative (chaotic) manner. Ultimately, this made the later HTML and template building work more straightforward. 
+The User, Profile, Project, Category and Messages relationships had to be planned in advance so that forms, views and templates could use a consistent structure. This required more initial planning than in previous assessments which I approached in a more iterative (chaotic) manner. Ultimately, this made the later HTML and template building work more straightforward. 
 
 ### Django forms and validation
 
-Django  forms are used to manage registration, profile updates, project records and messages. 
+Django forms are used to manage registration, profile updates, project records and messages. 
 
 Validation includes:
 - Django's built-in password validation
@@ -145,7 +145,7 @@ Message detail, archive and restore operations also check that the requesting us
 
 ## Automated testing
 
-ProjectPilot contains 18 automated tests across it's three application areas. 
+ProjectPilot contains 18 automated tests across its three application areas. 
 - Project model content and string representation
 - Project form validation
 - Project list and detail views
@@ -168,7 +168,7 @@ At the time of submission, all 18 automated tests pass successfully.
 ### Unregistered users
 Unregistered users can: 
 - Register an account
-- Access log in screen
+- Access login screen
 - Request a password reset
 
 ### Standard users
@@ -184,7 +184,7 @@ Authenticated users with the standard `user` role can:
 
 ### Project managers
 
-Users assigned to the `project manager` role  can:
+Users assigned to the `project manager` role can:
 - Access all standard account and messaging features
 - View projects belonging to every user
 - Update projects belonging to every user
