@@ -29,6 +29,13 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+    def clean_email(self):
+        """Reject email addresses already assigned to another user."""
+        email = self.cleaned_data.get('email')
+        
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("An account with this email address already exists.")
+        return email
 
 #User Updating info on profiles page
 #Widgets defining how form fields rendered in HTML bootstrap
