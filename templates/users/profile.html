@@ -15,6 +15,18 @@
                         Update your account and contact details
                     </p>
                 </div>
+                
+                {% if user_form.errors or profile_form.errors %}
+                    <div class="alert alert-danger">
+                        {{ user_form.errors }}
+                    </div>
+                    {% endif %}
+
+                    {% if profile_form.errors %}
+                        <div class="alert alert-danger">
+                            {{ profile_form.errors }}
+                        </div>
+                    {% endif %}
 
                 <form method="post">
                     {% csrf_token %}
