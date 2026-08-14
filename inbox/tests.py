@@ -70,7 +70,7 @@ class InboxViewTests(TestCase):
             sender=self.sender,
             recipient=self.recipient,
             subject="Project Testing Script",
-            body="Writing these scripts is a nightmare."
+            body="Test message for functionality verification."
         )
 
     def test_recipient_can_view_message(self):
